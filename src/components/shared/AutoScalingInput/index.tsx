@@ -56,6 +56,16 @@ export const AutoScalingInput: React.FC<AutoScalingInputProps> = ({
         updateFontSize();
     }, [updateFontSize, value]);
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newValue = e.target.value;
+
+        if (Number(newValue) <= max) {
+            onChange?.(e);
+        } else {
+            e.target.value = value.toString();
+        }
+    };
+
     return (
         <div className="absolute inset-x-0 bottom-1 z-40">
             <div className="flex justify-center px-1">
@@ -64,7 +74,7 @@ export const AutoScalingInput: React.FC<AutoScalingInputProps> = ({
                         ref={inputRef}
                         type="number"
                         value={Number(value).toString()}
-                        onChange={onChange}
+                        onChange={handleChange}
                         className={
                             'w-16 md:w-20 h-6 cookie-run-font text-outline-sm text-white text-center appearance-none leading-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all duration-200' +
                             className

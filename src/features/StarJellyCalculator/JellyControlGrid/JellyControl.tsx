@@ -21,7 +21,16 @@ type JellyControlProps = {
     onCountChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const jelly_images = [expJelly_1, expJelly_2, expJelly_3, expJelly_4, expJelly_5, expJelly_6, expJelly_7, expJelly_8];
+const jelly_images = [
+    expJelly_1,
+    expJelly_2,
+    expJelly_3,
+    expJelly_4,
+    expJelly_5,
+    expJelly_6,
+    expJelly_7,
+    expJelly_8,
+];
 
 export const JellyControl = (props: JellyControlProps) => {
     return (
@@ -50,9 +59,15 @@ export const JellyControl = (props: JellyControlProps) => {
                                     />
                                 </TooltipTrigger>
                                 <TooltipContent>
-                                    <p className="cookie-run-font">Level {props.jelly.level} Experience Jelly</p>
-                                    <p className="cookie-run-font">Base Exp: {props.jelly.baseExp} XP</p>
-                                    <p className="cookie-run-font">Effective Exp: {props.jelly.effectiveExp} XP</p>
+                                    <p className="cookie-run-font">
+                                        Level {props.jelly.level} Experience Jelly
+                                    </p>
+                                    <p className="cookie-run-font">
+                                        Base Exp: {props.jelly.baseExp} XP
+                                    </p>
+                                    <p className="cookie-run-font">
+                                        Effective Exp: {props.jelly.effectiveExp} XP
+                                    </p>
                                 </TooltipContent>
                             </Tooltip>
                         </TooltipProvider>
