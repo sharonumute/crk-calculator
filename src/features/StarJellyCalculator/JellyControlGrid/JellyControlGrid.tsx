@@ -9,7 +9,7 @@ type JellyControlGridProps = {
 export const JellyControlGrid = (props: JellyControlGridProps) => (
     <div className="block">
         <h3 className="text-lg font-semibold mb-2 text-white">Available Star Jellies</h3>
-        <div className="grid grid-cols-4 gap-4 w-fit mx-auto">
+        <div className="grid grid-cols-4 gap-4 w-full max-w-3xl mx-auto">
             {props.availableJellies.map((jelly) => (
                 <JellyControl
                     key={jelly.level}

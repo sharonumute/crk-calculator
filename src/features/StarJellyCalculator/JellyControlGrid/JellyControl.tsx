@@ -37,7 +37,7 @@ export const JellyControl = (props: JellyControlProps) => {
         <div className="flex flex-col items-center gap-0.5">
             <button
                 onClick={props.onSelect}
-                className={`relative w-18 h-18 md:w-24 md:h-24 duration-75 hover:scale-105 active:scale-95 cursor-pointer ${
+                className={`relative w-full h-full aspect-square max-w-32 max-h-32 duration-75 hover:scale-105 active:scale-95 cursor-pointer ${
                     !props.jelly.selected ? 'brightness-50' : ''
                 }`}
             >
@@ -55,7 +55,7 @@ export const JellyControl = (props: JellyControlProps) => {
                                     <img
                                         src={jelly_images[props.jelly.level - 1]}
                                         alt="Jelly"
-                                        className={`w-12 h-12 md:w-18 md:h-18 object-contain`}
+                                        className={`w-3/4 h-3/4 object-contain`}
                                     />
                                 </TooltipTrigger>
                                 <TooltipContent>
