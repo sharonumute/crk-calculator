@@ -1,5 +1,6 @@
 import { useWindowSize } from '@/hooks/useWindowSize';
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import './AutoScalingInput.css';
 
 interface AutoScalingInputProps {
     value: number;
@@ -27,7 +28,7 @@ export const AutoScalingInput: React.FC<AutoScalingInputProps> = ({
 
         if (!input || !container) return;
 
-        const baseSize = isMobile ? 16 : 24;
+        const baseSize = isMobile ? 16 : 32;
         const minSize = isMobile ? 8 : 12;
 
         const span = document.createElement('span');
@@ -76,7 +77,7 @@ export const AutoScalingInput: React.FC<AutoScalingInputProps> = ({
                         value={Number(value).toString()}
                         onChange={handleChange}
                         className={
-                            'w-16 md:w-20 h-6 cookie-run-font text-outline-sm text-white text-center appearance-none leading-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all duration-200' +
+                            'w-16 md:w-20 h-7 cookie-run-font text-outline-sm text-white text-center appearance-none leading-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all duration-200 on-focus  ' +
                             className
                         }
                         style={{
