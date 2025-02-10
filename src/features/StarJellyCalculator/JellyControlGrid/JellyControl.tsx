@@ -11,7 +11,7 @@ import {
     expJelly_8,
 } from '@/assets/images/jellies';
 import { MAX_JELLIES } from '@/features/StarJellyCalculator/consts';
-import { checkbox_off, checkbox_on } from '@/assets/images/icons';
+import { checkbox_off, checkbox_on, edit } from '@/assets/images/icons';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { AutoScalingInput } from '@/components/shared/AutoScalingInput';
 import { useElementSize } from '@/hooks/useElementSize';
@@ -69,6 +69,8 @@ export const JellyControl = (props: JellyControlProps) => {
                             <img src={checkbox_off} alt="Checkbox unselected" />
                         )}
                     </div>
+
+                    <img src={edit} alt="Editable" className="absolute w-1/4 h-1/4 z-40 right-2 top-2" />
                 </div>
 
                 <AutoScalingInput
