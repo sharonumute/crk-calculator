@@ -41,7 +41,7 @@ export const StarJellyCalculator = () => {
             const labBonus = 1 + labBonusPercentages[labUpgradeLevel];
             const burningBonus = 1 + burningTimePercent / 100;
 
-            return Math.floor(baseExp * labBonus * burningBonus);
+            return Math.round(baseExp * labBonus * burningBonus);
         },
         [burningTimePercent, labUpgradeLevel]
     );
