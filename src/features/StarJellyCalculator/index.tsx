@@ -86,10 +86,7 @@ export const StarJellyCalculator = () => {
         for (const jelly of sortedJellies) {
             if (remainingExp <= 0) break;
 
-            const jelliesNeeded = Math.min(
-                Math.ceil(remainingExp / jelly.effectiveExp),
-                jelly.count || 0
-            );
+            const jelliesNeeded = Math.min(Math.ceil(remainingExp / jelly.effectiveExp), jelly.count || 0);
 
             if (jelliesNeeded > 0) {
                 result.push({
@@ -113,10 +110,7 @@ export const StarJellyCalculator = () => {
     };
 
     const jellyControlGrid = (
-        <JellyControlGrid
-            availableJellies={availableJellies}
-            setAvailableJellies={setAvailableJellies}
-        />
+        <JellyControlGrid availableJellies={availableJellies} setAvailableJellies={setAvailableJellies} />
     );
 
     return (
@@ -183,9 +177,7 @@ export const StarJellyCalculator = () => {
 
                             {calculationResult.length > 0 && (
                                 <div>
-                                    <h3 className="text-lg font-semibold mb-2 text-white">
-                                        Required Star Jellies
-                                    </h3>
+                                    <h3 className="text-lg font-semibold mb-2 text-white">Required Star Jellies</h3>
                                     <div className="p-4 bg-blue-50 border border-blue-200 rounded mb-4">
                                         <span className="font-medium">Total EXP Required: </span>
                                         {totalExpRequired.toLocaleString()} EXP

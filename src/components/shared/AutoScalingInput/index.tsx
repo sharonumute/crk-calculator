@@ -77,15 +77,15 @@ export const AutoScalingInput = ({
     return (
         <div className="absolute inset-x-0 bottom-1 z-40">
             <div className="flex justify-center px-1 pb-2">
-                <div ref={containerRef} className="w-full">
+                <div ref={containerRef} className="w-3/4">
                     <input
                         ref={inputRef}
                         type="number"
                         value={Number(value).toString()}
                         onChange={handleChange}
                         className={
-                            'w-full cookie-run-font text-outline-sm text-white text-center appearance-none leading-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all duration-200 on-focus  ' +
-                            className
+                            className +
+                            ' w-full cookie-run-font text-outline-sm text-white text-center appearance-none leading-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all duration-200 on-focus'
                         }
                         style={{
                             fontSize: `${fontSize}px`,

@@ -1,5 +1,5 @@
 import { blueDefaultButton_Part1, blueDefaultButton_Part2, blueDefaultButton_Part3 } from '@/assets/images/buttons';
-import './Button.css';
+import './StyledButton.css';
 
 type StyledButtonProps = {
     label: string;

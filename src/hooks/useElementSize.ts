@@ -5,10 +5,7 @@ interface ElementSize {
     height: number;
 }
 
-export const useElementSize = <T extends HTMLElement>(): [
-    React.RefObject<T | null>,
-    ElementSize
-] => {
+export const useElementSize = <T extends HTMLElement>(): [React.RefObject<T | null>, ElementSize] => {
     const ref = useRef<T>(null);
     const [size, setSize] = useState<ElementSize>({ width: 0, height: 0 });
 

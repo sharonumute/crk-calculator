@@ -23,9 +23,7 @@ export const JellyControlGrid = (props: JellyControlGridProps) => {
                         }}
                         onCountChange={(e) => {
                             const newJellies = props.availableJellies.map((j) =>
-                                j.level === jelly.level
-                                    ? { ...j, count: Number(e.target.value) }
-                                    : j
+                                j.level === jelly.level ? { ...j, count: Number(e.target.value) } : j
                             );
                             props.setAvailableJellies(newJellies);
                         }}
