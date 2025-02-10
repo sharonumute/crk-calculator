@@ -14,7 +14,7 @@ import { MAX_JELLIES } from '@/features/StarJellyCalculator/consts';
 import { checkbox_off, checkbox_on } from '@/assets/images/icons';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { AutoScalingInput } from '@/components/shared/AutoScalingInput';
-import { useWindowSize } from '@/hooks/useWindowSize';
+import { useElementSize } from '@/hooks/useElementSize';
 
 type JellyControlProps = {
     jelly: StarJelly;
@@ -34,10 +34,12 @@ const jelly_images = [
 ];
 
 export const JellyControl = (props: JellyControlProps) => {
-    const isMobile = useWindowSize();
+    const [containerRef, size] = useElementSize<HTMLButtonElement>();
+
     return (
         <div className="flex flex-col items-center gap-0.5">
             <button
+                ref={containerRef}
                 onClick={props.onSelect}
                 className={`relative w-full h-full aspect-square max-w-32 max-h-32 duration-75 hover:scale-105 active:scale-95 cursor-pointer ${
                     !props.jelly.selected ? 'brightness-50' : ''
@@ -75,11 +77,11 @@ export const JellyControl = (props: JellyControlProps) => {
                         </TooltipProvider>
                     </div>
 
-                    <div className="absolute top-2 left-2 z-40">
+                    <div className="absolute top-2 left-2 z-40 w-1/4 h-1/4">
                         {props.jelly.selected ? (
-                            <img src={checkbox_on} alt="Checkbox selected" className="w-6 h-6" />
+                            <img src={checkbox_on} alt="Checkbox selected" />
                         ) : (
-                            <img src={checkbox_off} alt="Checkbox unselected" className="w-6 h-6" />
+                            <img src={checkbox_off} alt="Checkbox unselected" />
                         )}
                     </div>
                 </div>
@@ -89,8 +91,8 @@ export const JellyControl = (props: JellyControlProps) => {
                     onChange={props.onCountChange}
                     min={0}
                     max={MAX_JELLIES}
-                    baseFontSize={isMobile ? 16 : 32}
-                    minFontSize={isMobile ? 8 : 12}
+                    baseFontSize={0.25 * size.width}
+                    minFontSize={(0.25 * size.width) / 2}
                 />
             </button>
         </div>
