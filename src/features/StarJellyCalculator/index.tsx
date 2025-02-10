@@ -32,7 +32,6 @@ export const StarJellyCalculator = () => {
     const [labUpgradeLevel, setLabUpgradeLevel] = useState(0);
     const [burningTimePercent, setBurningTimePercent] = useState(0);
     const [totalExpRequired, setTotalExpRequired] = useState(0);
-    const [availableJellies, setAvailableJellies] = useState<StarJelly[]>([]);
 
     const calculateEffectiveJellyExp = useCallback(
         (baseExp: number) => {
@@ -46,15 +45,22 @@ export const StarJellyCalculator = () => {
         [burningTimePercent, labUpgradeLevel]
     );
 
+    const [availableJellies, setAvailableJellies] = useState<StarJelly[]>(
+        JELLY_EXP_VALUES.map((row) => ({
+            level: row.Level,
+            baseExp: row.Base,
+            effectiveExp: calculateEffectiveJellyExp(row.Base),
+            count: MAX_JELLIES,
+            selected: true,
+        })).filter((jelly) => !isNaN(jelly.level) && !isNaN(jelly.baseExp))
+    );
+
     useEffect(() => {
-        setAvailableJellies(
-            JELLY_EXP_VALUES.map((row) => ({
-                level: row.Level,
-                baseExp: row.Base,
-                effectiveExp: calculateEffectiveJellyExp(row.Base),
-                count: MAX_JELLIES,
-                selected: true,
-            })).filter((jelly) => !isNaN(jelly.level) && !isNaN(jelly.baseExp))
+        setAvailableJellies((prevJellies) =>
+            prevJellies.map((jelly) => ({
+                ...jelly,
+                effectiveExp: calculateEffectiveJellyExp(jelly.baseExp),
+            }))
         );
     }, [calculateEffectiveJellyExp]);
 
@@ -80,9 +86,8 @@ export const StarJellyCalculator = () => {
         for (const jelly of sortedJellies) {
             if (remainingExp <= 0) break;
 
-            const effectiveExp = calculateEffectiveJellyExp(jelly.baseExp);
             const jelliesNeeded = Math.min(
-                Math.ceil(remainingExp / effectiveExp),
+                Math.ceil(remainingExp / jelly.effectiveExp),
                 jelly.count || 0
             );
 
@@ -90,9 +95,9 @@ export const StarJellyCalculator = () => {
                 result.push({
                     jellyType: jelly.level,
                     count: jelliesNeeded,
-                    expProvided: jelliesNeeded * effectiveExp,
+                    expProvided: jelliesNeeded * jelly.effectiveExp,
                 });
-                remainingExp -= jelliesNeeded * effectiveExp;
+                remainingExp -= jelliesNeeded * jelly.effectiveExp;
             }
         }
 
