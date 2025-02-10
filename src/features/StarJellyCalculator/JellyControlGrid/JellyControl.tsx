@@ -14,6 +14,7 @@ import { MAX_JELLIES } from '@/features/StarJellyCalculator/consts';
 import { checkbox_off, checkbox_on } from '@/assets/images/icons';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { AutoScalingInput } from '@/components/shared/AutoScalingInput';
+import { useWindowSize } from '@/hooks/useWindowSize';
 
 type JellyControlProps = {
     jelly: StarJelly;
@@ -33,6 +34,7 @@ const jelly_images = [
 ];
 
 export const JellyControl = (props: JellyControlProps) => {
+    const isMobile = useWindowSize();
     return (
         <div className="flex flex-col items-center gap-0.5">
             <button
@@ -87,6 +89,8 @@ export const JellyControl = (props: JellyControlProps) => {
                     onChange={props.onCountChange}
                     min={0}
                     max={MAX_JELLIES}
+                    baseFontSize={isMobile ? 16 : 32}
+                    minFontSize={isMobile ? 8 : 12}
                 />
             </button>
         </div>

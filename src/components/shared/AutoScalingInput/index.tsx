@@ -1,4 +1,3 @@
-import { useWindowSize } from '@/hooks/useWindowSize';
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import './AutoScalingInput.css';
 
@@ -8,19 +7,22 @@ interface AutoScalingInputProps {
     min: number;
     max: number;
     className?: string;
+    baseFontSize?: number;
+    minFontSize?: number;
 }
 
-export const AutoScalingInput: React.FC<AutoScalingInputProps> = ({
+export const AutoScalingInput = ({
     value,
     onChange,
     min,
     max,
     className = '',
-}) => {
-    const [fontSize, setFontSize] = useState(16);
+    baseFontSize = 16,
+    minFontSize = 8,
+}: AutoScalingInputProps) => {
+    const [fontSize, setFontSize] = useState(baseFontSize);
     const inputRef = useRef<HTMLInputElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
-    const isMobile = useWindowSize();
 
     const updateFontSize = useCallback(() => {
         const input = inputRef.current;
@@ -28,8 +30,8 @@ export const AutoScalingInput: React.FC<AutoScalingInputProps> = ({
 
         if (!input || !container) return;
 
-        const baseSize = isMobile ? 16 : 32;
-        const minSize = isMobile ? 8 : 12;
+        const baseSize = baseFontSize;
+        const minSize = minFontSize;
 
         const span = document.createElement('span');
         span.style.visibility = 'hidden';
@@ -43,7 +45,7 @@ export const AutoScalingInput: React.FC<AutoScalingInputProps> = ({
         const textWidth = span.offsetWidth;
         document.body.removeChild(span);
 
-        const containerWidth = container.clientWidth - 16; // Adjust for m-2 margin
+        const containerWidth = container.clientWidth - 16;
 
         if (textWidth > containerWidth) {
             const newFontSize = (containerWidth / textWidth) * baseSize;
@@ -51,11 +53,16 @@ export const AutoScalingInput: React.FC<AutoScalingInputProps> = ({
         } else {
             setFontSize(baseSize);
         }
-    }, [isMobile, value]);
+    }, [baseFontSize, minFontSize, value]);
 
     useEffect(() => {
         updateFontSize();
     }, [updateFontSize, value]);
+
+    useEffect(() => {
+        window.addEventListener('resize', () => updateFontSize());
+        return window.removeEventListener('resize', () => updateFontSize());
+    }, [updateFontSize]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = e.target.value;
@@ -69,15 +76,15 @@ export const AutoScalingInput: React.FC<AutoScalingInputProps> = ({
 
     return (
         <div className="absolute inset-x-0 bottom-1 z-40">
-            <div className="flex justify-center px-1">
-                <div ref={containerRef} className="w-16 md:w-20 m-1 md:m-2">
+            <div className="flex justify-center px-1 pb-2">
+                <div ref={containerRef} className="w-full">
                     <input
                         ref={inputRef}
                         type="number"
                         value={Number(value).toString()}
                         onChange={handleChange}
                         className={
-                            'w-16 md:w-20 h-7 cookie-run-font text-outline-sm text-white text-center appearance-none leading-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all duration-200 on-focus  ' +
+                            'w-full cookie-run-font text-outline-sm text-white text-center appearance-none leading-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all duration-200 on-focus  ' +
                             className
                         }
                         style={{
