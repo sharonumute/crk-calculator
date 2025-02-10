@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { CalculationResult, EXP_GIVEN_ROW, EXP_REQUIREMENT_ROW, StarJelly } from './types';
 import { JellyControlGrid } from './JellyControlGrid/JellyControlGrid';
@@ -32,6 +32,7 @@ export const StarJellyCalculator = () => {
     const [labUpgradeLevel, setLabUpgradeLevel] = useState(0);
     const [burningTimePercent, setBurningTimePercent] = useState(0);
     const [totalExpRequired, setTotalExpRequired] = useState(0);
+    const [availableJellies, setAvailableJellies] = useState<StarJelly[]>([]);
 
     const calculateEffectiveJellyExp = useCallback(
         (baseExp: number) => {
@@ -45,15 +46,17 @@ export const StarJellyCalculator = () => {
         [burningTimePercent, labUpgradeLevel]
     );
 
-    const [availableJellies, setAvailableJellies] = useState<StarJelly[]>(
-        JELLY_EXP_VALUES.map((row) => ({
-            level: row.Level,
-            baseExp: row.Base,
-            effectiveExp: calculateEffectiveJellyExp(row.Base),
-            count: MAX_JELLIES,
-            selected: true,
-        })).filter((jelly) => !isNaN(jelly.level) && !isNaN(jelly.baseExp))
-    );
+    useEffect(() => {
+        setAvailableJellies(
+            JELLY_EXP_VALUES.map((row) => ({
+                level: row.Level,
+                baseExp: row.Base,
+                effectiveExp: calculateEffectiveJellyExp(row.Base),
+                count: MAX_JELLIES,
+                selected: true,
+            })).filter((jelly) => !isNaN(jelly.level) && !isNaN(jelly.baseExp))
+        );
+    }, [calculateEffectiveJellyExp]);
 
     const calculateRequiredExp = (current: number, target: number): number => {
         return EXP_REQUIREMENTS.filter((req) => req.Level > current && req.Level <= target).reduce(
