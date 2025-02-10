@@ -110,7 +110,9 @@ export const StarJellyCalculator = () => {
     };
 
     const jellyControlGrid = (
-        <JellyControlGrid availableJellies={availableJellies} setAvailableJellies={setAvailableJellies} />
+        <div className={isMobile ? 'flex justify-center w-full' : 'w-full'}>
+            <JellyControlGrid availableJellies={availableJellies} setAvailableJellies={setAvailableJellies} />
+        </div>
     );
 
     return (
@@ -119,7 +121,7 @@ export const StarJellyCalculator = () => {
                 <CardContent className="p-6">
                     <h2 className="text-2xl font-bold mb-4 text-white">Star Jelly Calculator</h2>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                         <div className="space-y-6">
                             <div className="grid grid-cols-2 gap-4">
                                 <StyledInput
