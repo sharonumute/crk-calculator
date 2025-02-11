@@ -1,5 +1,4 @@
 import { useState, useCallback, useEffect } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
 import { CalculationResult, EXP_GIVEN_ROW, EXP_REQUIREMENT_ROW, StarJelly } from './types';
 import { JellyControlGrid } from './JellyControlGrid/JellyControlGrid';
 import { StyledInput } from '@/components/shared/StyledInput';
@@ -11,6 +10,9 @@ import starJelliesDataRaw from '@/assets/data/required_star_jellies_per_level.cs
 import expGivenDataRaw from '@/assets/data/exp_given_by_jellies.csv?raw';
 import Papa from 'papaparse';
 import { LevelControlRow } from './LevelControlRow/LevelControlRow';
+import { PanelHeader } from '@/components/shared/PanelHeader';
+import './StarJellyCalculator.css';
+import { PanelFooter } from '@/components/shared/PanelFooter';
 
 const EXP_REQUIREMENTS = Papa.parse<EXP_REQUIREMENT_ROW>(starJelliesDataRaw, {
     header: true,
@@ -117,86 +119,86 @@ export const StarJellyCalculator = () => {
     );
 
     return (
-        <div className="w-full p-4">
-            <Card className="bg-slate-900">
-                <CardContent className="p-6">
-                    <h2 className="text-2xl font-bold mb-4 text-white">Star Jelly Calculator</h2>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-                        <div className="space-y-6">
-                            <div className="grid grid-cols-2 gap-4">
-                                <LevelControlRow
-                                    currentLevel={currentLevel}
-                                    targetLevel={targetLevel}
-                                    onCurrentLevelChange={(e) => setCurrentLevel(Number(e.target.value))}
-                                    onTargetLevelChange={(e) => setTargetLevel(Number(e.target.value))}
-                                />
-                            </div>
-
-                            <div className="grid grid-cols-2 gap-4 items-end">
-                                <StyledSelect
-                                    label="Lab Upgrade Level (1-5)"
-                                    value={labUpgradeLevel}
-                                    onChange={(e) => setLabUpgradeLevel(Number(e.target.value))}
-                                    options={[
-                                        'No Upgrade',
-                                        'Level 1 (+1%)',
-                                        'Level 2 (+3%)',
-                                        'Level 3 (+5%)',
-                                        'Level 4 (+7%)',
-                                        'Level 5 (+10%)',
-                                    ]}
-                                />
-
-                                <StyledInput
-                                    label="Burning Time Bonus (%)"
-                                    type="number"
-                                    value={burningTimePercent}
-                                    onChange={(e) => setBurningTimePercent(Number(e.target.value))}
-                                    min="0"
-                                    max="100"
-                                />
-                            </div>
-
-                            {isMobile && jellyControlGrid}
-
-                            <StyledButton label="CALCULATE" onClick={calculateOptimalJellyUsage} />
-
-                            {errorMessage && (
-                                <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded">
-                                    {errorMessage}
-                                </div>
-                            )}
-
-                            {calculationResult.length > 0 && (
-                                <div>
-                                    <h3 className="text-lg font-semibold mb-2 text-white">Required Star Jellies</h3>
-                                    <div className="p-4 bg-blue-50 border border-blue-200 rounded mb-4">
-                                        <span className="font-medium">Total EXP Required: </span>
-                                        {totalExpRequired.toLocaleString()} EXP
-                                    </div>
-                                    <div className="space-y-2">
-                                        {calculationResult.map((result, index) => (
-                                            <div
-                                                key={index}
-                                                className="p-2 border rounded flex justify-between text-white"
-                                            >
-                                                <span>Level {result.jellyType} Star Jellies:</span>
-                                                <span className="font-medium">
-                                                    {result.count.toLocaleString()} (
-                                                    {result.expProvided.toLocaleString()} EXP)
-                                                </span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
+        <div className="w-full rounded-3xl shadow-sm border-transparent flex flex-col">
+            <PanelHeader className="w-full h-11">
+                <h1 className="flex items-center justify-center text-white drop-shadow cookie-run-font font-bold text-lg text-outline-sm pt-1 tracking-wider h-full">
+                    Star Jelly Calculator
+                </h1>
+            </PanelHeader>
+            <div className="card_content p-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                    <div className="space-y-6">
+                        <div className="grid grid-cols-2 gap-4">
+                            <LevelControlRow
+                                currentLevel={currentLevel}
+                                targetLevel={targetLevel}
+                                onCurrentLevelChange={(e) => setCurrentLevel(Number(e.target.value))}
+                                onTargetLevelChange={(e) => setTargetLevel(Number(e.target.value))}
+                            />
                         </div>
 
-                        {!isMobile && jellyControlGrid}
+                        <div className="grid grid-cols-2 gap-4 items-end">
+                            <StyledSelect
+                                label="Lab Upgrade Level (1-5)"
+                                value={labUpgradeLevel}
+                                onChange={(e) => setLabUpgradeLevel(Number(e.target.value))}
+                                options={[
+                                    'No Upgrade',
+                                    'Level 1 (+1%)',
+                                    'Level 2 (+3%)',
+                                    'Level 3 (+5%)',
+                                    'Level 4 (+7%)',
+                                    'Level 5 (+10%)',
+                                ]}
+                            />
+
+                            <StyledInput
+                                label="Burning Time Bonus (%)"
+                                type="number"
+                                value={burningTimePercent}
+                                onChange={(e) => setBurningTimePercent(Number(e.target.value))}
+                                min="0"
+                                max="100"
+                            />
+                        </div>
+
+                        {isMobile && jellyControlGrid}
+
+                        {errorMessage && (
+                            <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+                                {errorMessage}
+                            </div>
+                        )}
+
+                        {calculationResult.length > 0 && (
+                            <div>
+                                <h3 className="text-lg font-semibold mb-2 text-white">Required Star Jellies</h3>
+                                <div className="p-4 bg-blue-50 border border-blue-200 rounded mb-4">
+                                    <span className="font-medium">Total EXP Required: </span>
+                                    {totalExpRequired.toLocaleString()} EXP
+                                </div>
+                                <div className="space-y-2">
+                                    {calculationResult.map((result, index) => (
+                                        <div key={index} className="p-2 border rounded flex justify-between text-white">
+                                            <span>Level {result.jellyType} Star Jellies:</span>
+                                            <span className="font-medium">
+                                                {result.count.toLocaleString()} ({result.expProvided.toLocaleString()}{' '}
+                                                EXP)
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
                     </div>
-                </CardContent>
-            </Card>
+
+                    {!isMobile && jellyControlGrid}
+                </div>
+            </div>
+
+            <PanelFooter className="w-full h-20">
+                <StyledButton label="CALCULATE" onClick={calculateOptimalJellyUsage} />
+            </PanelFooter>
         </div>
     );
 };

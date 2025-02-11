@@ -19,7 +19,6 @@ type PanelBackgroundProps = {
 const PanelBackground = ({ children, className = '' }: PanelBackgroundProps) => {
     return (
         <div className={`relative inline-block ${className}`} style={{ height: '-webkit-fill-available' }}>
-            {/* Background Layer */}
             <div className="absolute inset-0 flex flex-col">
                 <div className="flex flex-shrink-0">
                     <img src={blue_panel_top_left} className="flex-shrink-0 w-8 h-8" />
@@ -40,7 +39,6 @@ const PanelBackground = ({ children, className = '' }: PanelBackgroundProps) => 
                 </div>
             </div>
 
-            {/* Content Layer */}
             <div className="relative p-4">{children}</div>
         </div>
     );

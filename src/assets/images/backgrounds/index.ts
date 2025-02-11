@@ -8,6 +8,8 @@ import blue_panel_bottom_left from './blue_panel/blue_panel_bottom_left.png';
 import blue_panel_bottom_right from './blue_panel/blue_panel_bottom_right.png';
 import blue_panel_bottom_middle from './blue_panel/blue_panel_bottom_middle.png';
 
+import background_checkbox from './background_checkbox.png';
+
 export {
     blue_panel_bottom_left,
     blue_panel_bottom_middle,
@@ -19,3 +21,5 @@ export {
     blue_panel_top_middle,
     blue_panel_top_right,
 };
+
+export { background_checkbox };
