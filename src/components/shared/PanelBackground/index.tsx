@@ -14,29 +14,28 @@ import {
 type PanelBackgroundProps = {
     children: React.ReactNode;
     className?: string;
-    height?: number;
 };
 
-const PanelBackground = ({ children, className = '', height }: PanelBackgroundProps) => {
+const PanelBackground = ({ children, className = '' }: PanelBackgroundProps) => {
     return (
-        <div className={`relative inline-block ${className}`}>
+        <div className={`relative inline-block ${className}`} style={{ height: '-webkit-fill-available' }}>
             {/* Background Layer */}
             <div className="absolute inset-0 flex flex-col">
                 <div className="flex flex-shrink-0">
                     <img src={blue_panel_top_left} className="flex-shrink-0 w-8 h-8" />
-                    <img src={blue_panel_top_middle} className="h-8 flex-grow" />
+                    <img src={blue_panel_top_middle} className="flex-grow h-8" />
                     <img src={blue_panel_top_right} className="flex-shrink-0 w-8 h-8" />
                 </div>
 
-                <div className={`flex`} style={{ height: height ? height - 32 : '100%' }}>
-                    <img src={blue_panel_center_left} className="flex-shrink-0 w-8 [height:inherit]" />
-                    <img src={blue_panel_center_middle} className="flex-grow object-fill [height:inherit]" />
-                    <img src={blue_panel_center_right} className="flex-shrink-0 w-8 [height:inherit]" />
+                <div className={`flex`} style={{ height: 'calc(100% - 64px)' }}>
+                    <img src={blue_panel_center_left} className="flex-shrink-0 w-8" />
+                    <img src={blue_panel_center_middle} className="flex-grow" />
+                    <img src={blue_panel_center_right} className="flex-shrink-0 w-8" />
                 </div>
 
                 <div className="flex flex-shrink-0">
                     <img src={blue_panel_bottom_left} className="flex-shrink-0 w-8 h-8" />
-                    <img src={blue_panel_bottom_middle} className="h-8 flex-grow" />
+                    <img src={blue_panel_bottom_middle} className="flex-grow h-8" />
                     <img src={blue_panel_bottom_right} className="flex-shrink-0 w-8 h-8" />
                 </div>
             </div>
