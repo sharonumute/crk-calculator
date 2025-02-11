@@ -10,6 +10,7 @@ import { useWindowSize } from '@/hooks/useWindowSize';
 import starJelliesDataRaw from '@/assets/data/required_star_jellies_per_level.csv?raw';
 import expGivenDataRaw from '@/assets/data/exp_given_by_jellies.csv?raw';
 import Papa from 'papaparse';
+import { LevelControlRow } from './LevelControlRow/LevelControlRow';
 
 const EXP_REQUIREMENTS = Papa.parse<EXP_REQUIREMENT_ROW>(starJelliesDataRaw, {
     header: true,
@@ -124,21 +125,11 @@ export const StarJellyCalculator = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                         <div className="space-y-6">
                             <div className="grid grid-cols-2 gap-4">
-                                <StyledInput
-                                    label="Current Level"
-                                    type="number"
-                                    value={currentLevel}
-                                    onChange={(e) => setCurrentLevel(Number(e.target.value))}
-                                    min="1"
-                                    max="89"
-                                />
-                                <StyledInput
-                                    label="Target Level"
-                                    type="number"
-                                    value={targetLevel}
-                                    onChange={(e) => setTargetLevel(Number(e.target.value))}
-                                    min="2"
-                                    max="90"
+                                <LevelControlRow
+                                    currentLevel={currentLevel}
+                                    targetLevel={targetLevel}
+                                    onCurrentLevelChange={(e) => setCurrentLevel(Number(e.target.value))}
+                                    onTargetLevelChange={(e) => setTargetLevel(Number(e.target.value))}
                                 />
                             </div>
 
