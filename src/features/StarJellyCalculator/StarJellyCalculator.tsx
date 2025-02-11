@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 import { CalculationResult, EXP_GIVEN_ROW, EXP_REQUIREMENT_ROW, StarJelly } from './types';
 import { JellyControlGrid } from './JellyControlGrid/JellyControlGrid';
 import { StyledInput } from '@/components/shared/StyledInput';
@@ -12,6 +12,7 @@ import Papa from 'papaparse';
 import { LevelControlRow } from './LevelControlRow/LevelControlRow';
 import { PanelHeader } from '@/components/shared/PanelHeader';
 import { PanelFooter } from '@/components/shared/PanelFooter';
+import { CalculationResultArea } from './CalculationResultArea/CalculationResultArea';
 
 const EXP_REQUIREMENTS = Papa.parse<EXP_REQUIREMENT_ROW>(starJelliesDataRaw, {
     header: true,
@@ -30,21 +31,20 @@ export const StarJellyCalculator = () => {
     const [currentLevel, setCurrentLevel] = useState(1);
     const [targetLevel, setTargetLevel] = useState(70);
     const [errorMessage, setErrorMessage] = useState('');
-    const [calculationResult, setCalculationResult] = useState<CalculationResult[]>([]);
+    const [calculationResults, setCalculationResults] = useState<CalculationResult[]>([]);
     const [labUpgradeLevel, setLabUpgradeLevel] = useState(0);
     const [burningTimePercent, setBurningTimePercent] = useState(0);
-    const [totalExpRequired, setTotalExpRequired] = useState(0);
+    // Lab upgrade bonuses: 0%, 1%, 3%, 5%, 7%, 10%
+    const labBonusPercentages = useMemo(() => [0, 0.01, 0.03, 0.05, 0.07, 0.1], []);
 
     const calculateEffectiveJellyExp = useCallback(
         (baseExp: number) => {
-            // Lab upgrade bonuses: 0%, 1%, 3%, 5%, 7%, 10%
-            const labBonusPercentages = [0, 0.01, 0.03, 0.05, 0.07, 0.1];
             const labBonus = 1 + labBonusPercentages[labUpgradeLevel];
             const burningBonus = 1 + burningTimePercent / 100;
 
             return Math.round(baseExp * labBonus * burningBonus);
         },
-        [burningTimePercent, labUpgradeLevel]
+        [burningTimePercent, labUpgradeLevel, labBonusPercentages]
     );
 
     const [availableJellies, setAvailableJellies] = useState<StarJelly[]>(
@@ -75,7 +75,6 @@ export const StarJellyCalculator = () => {
 
     const calculateOptimalJellyUsage = () => {
         const totalExpNeeded = calculateRequiredExp(currentLevel, targetLevel);
-        setTotalExpRequired(totalExpNeeded);
 
         let remainingExp = totalExpNeeded;
         const result: CalculationResult[] = [];
@@ -92,15 +91,16 @@ export const StarJellyCalculator = () => {
 
             if (jelliesNeeded > 0) {
                 result.push({
-                    jellyType: jelly.level,
+                    jelly: jelly,
                     count: jelliesNeeded,
                     expProvided: jelliesNeeded * jelly.effectiveExp,
+                    expEfficiency: labBonusPercentages[labUpgradeLevel] * 100 + burningTimePercent,
                 });
                 remainingExp -= jelliesNeeded * jelly.effectiveExp;
             }
         }
 
-        setCalculationResult(result);
+        setCalculationResults(result);
 
         if (remainingExp > 0) {
             setErrorMessage(
@@ -111,12 +111,6 @@ export const StarJellyCalculator = () => {
         }
     };
 
-    const jellyControlGrid = (
-        <div className={isMobile ? 'flex justify-center w-full' : 'w-full'}>
-            <JellyControlGrid availableJellies={availableJellies} setAvailableJellies={setAvailableJellies} />
-        </div>
-    );
-
     return (
         <div className="w-full rounded-3xl shadow-sm border-transparent flex flex-col">
             <PanelHeader className="w-full h-11">
@@ -124,16 +118,20 @@ export const StarJellyCalculator = () => {
                     Star Jelly Calculator
                 </h1>
             </PanelHeader>
-            <div className="card-content p-6">
+            <div className="card-content p-2">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                     <div className="space-y-6">
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 gap-4">
                             <LevelControlRow
                                 currentLevel={currentLevel}
                                 targetLevel={targetLevel}
                                 onCurrentLevelChange={(e) => setCurrentLevel(Number(e.target.value))}
                                 onTargetLevelChange={(e) => setTargetLevel(Number(e.target.value))}
                             />
+                            <div className="p-4 bg-blue-50 border border-blue-200 rounded mb-4">
+                                <span className="font-medium">Total EXP Required: </span>
+                                {calculateRequiredExp(currentLevel, targetLevel)} EXP
+                            </div>
                         </div>
 
                         <div className="grid grid-cols-2 gap-4 items-end">
@@ -161,42 +159,26 @@ export const StarJellyCalculator = () => {
                             />
                         </div>
 
-                        {isMobile && jellyControlGrid}
-
                         {errorMessage && (
                             <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded">
                                 {errorMessage}
                             </div>
                         )}
 
-                        {calculationResult.length > 0 && (
-                            <div>
-                                <h3 className="text-lg font-semibold mb-2 text-white">Required Star Jellies</h3>
-                                <div className="p-4 bg-blue-50 border border-blue-200 rounded mb-4">
-                                    <span className="font-medium">Total EXP Required: </span>
-                                    {totalExpRequired.toLocaleString()} EXP
-                                </div>
-                                <div className="space-y-2">
-                                    {calculationResult.map((result, index) => (
-                                        <div key={index} className="p-2 border rounded flex justify-between text-white">
-                                            <span>Level {result.jellyType} Star Jellies:</span>
-                                            <span className="font-medium">
-                                                {result.count.toLocaleString()} ({result.expProvided.toLocaleString()}{' '}
-                                                EXP)
-                                            </span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
+                        <CalculationResultArea calculationResults={calculationResults} />
                     </div>
 
-                    {!isMobile && jellyControlGrid}
+                    <div className={isMobile ? 'flex justify-center w-full' : 'w-full'}>
+                        <JellyControlGrid
+                            availableJellies={availableJellies}
+                            setAvailableJellies={setAvailableJellies}
+                        />
+                    </div>
                 </div>
             </div>
 
             <PanelFooter className="w-full h-20">
-                <StyledButton label="CALCULATE" onClick={calculateOptimalJellyUsage} />
+                <StyledButton label="CALCULATE" onClick={calculateOptimalJellyUsage} variant="BrightBlueButton" />
             </PanelFooter>
         </div>
     );

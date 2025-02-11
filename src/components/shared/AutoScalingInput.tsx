@@ -76,7 +76,7 @@ export const AutoScalingInput = ({
                         onChange={onChange}
                         className={
                             className +
-                            ' w-full cookie-run-font text-outline-sm text-white text-center appearance-none leading-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all duration-200 on-focus'
+                            ' w-full cookie-run-font text-outline-sm text-white text-center appearance-none leading-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all duration-200 dark-focus-input'
                         }
                         style={{
                             fontSize: `${fontSize}px`,

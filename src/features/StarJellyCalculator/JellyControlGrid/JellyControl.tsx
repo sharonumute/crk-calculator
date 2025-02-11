@@ -37,11 +37,7 @@ export const JellyControl = (props: JellyControlProps) => {
                 }`}
             >
                 <div className="relative w-full h-full">
-                    <img
-                        src={purpleSquareButton}
-                        alt="Background texture"
-                        className="absolute inset-0 w-full h-full object-cover"
-                    />
+                    <img src={purpleSquareButton} className="absolute inset-0 w-full h-full object-cover" />
 
                     <div className="absolute inset-0 z-30 flex items-center justify-center">
                         <TooltipProvider>
@@ -49,7 +45,7 @@ export const JellyControl = (props: JellyControlProps) => {
                                 <TooltipTrigger asChild>
                                     <img
                                         src={jelly_images[props.jelly.level - 1]}
-                                        alt="Jelly"
+                                        alt={`Jelly level ${props.jelly.level}`}
                                         className={`w-3/4 h-3/4 object-contain`}
                                     />
                                 </TooltipTrigger>

@@ -7,9 +7,10 @@ export interface StarJelly {
 }
 
 export interface CalculationResult {
-    jellyType: number;
+    jelly: StarJelly;
     count: number;
     expProvided: number;
+    expEfficiency: number;
 }
 
 export interface EXP_GIVEN_ROW {
