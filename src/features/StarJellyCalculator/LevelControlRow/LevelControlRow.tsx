@@ -19,6 +19,7 @@ export const LevelControlRow = (props: LevelControlRowProps) => {
                     value={props.currentLevel}
                     onChange={props.onCurrentLevelChange}
                     className="text-gray-600"
+                    ariaLabel={`Current Level: ${props.currentLevel}. Editable`}
                 />
             </div>
             <div className="flex justify-center items-center">
@@ -29,6 +30,7 @@ export const LevelControlRow = (props: LevelControlRowProps) => {
                     value={props.targetLevel}
                     onChange={props.onTargetLevelChange}
                     className="text-green-500"
+                    aria-label={`Target Level: ${props.targetLevel}. Editable`}
                 />
             </div>
         </div>

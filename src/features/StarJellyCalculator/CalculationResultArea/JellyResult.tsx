@@ -34,7 +34,10 @@ export const JellyResult = ({ calculationResult }: JellyResultProps) => {
     const bonusActive = calculationResult.jelly.effectiveExp != calculationResult.jelly.baseExp;
     const effectiveExpColor = bonusActive ? 'text-red-200' : 'text-white';
     return (
-        <div className="relative min-w-16 aspect-square m-1">
+        <div
+            className="relative min-w-16 aspect-square m-1"
+            aria-label={`${calculationResult.count} Level ${calculationResult.jelly.level} jellies`}
+        >
             <div className="flex relative cookie-run-font text-xs text-white text-outline-sm items-center justify-center bg-black/25 rounded-full mb-1.5">
                 <span>EXP</span>
                 <span className={effectiveExpColor}>&nbsp;{calculationResult.jelly.effectiveExp}</span>

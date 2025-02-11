@@ -30,7 +30,7 @@ export const AutoWidthInput = ({ value, onChange, className, placeholder, style,
         <div className="relative inline-block">
             <div
                 ref={hiddenText}
-                className="absolute invisible whitespace-pre "
+                className="absolute invisible whitespace-pre"
                 style={{ fontFamily: 'inherit', fontSize: 'inherit' }}
             >
                 {innerValue || placeholder || ''}
@@ -40,10 +40,11 @@ export const AutoWidthInput = ({ value, onChange, className, placeholder, style,
                 {...props}
                 value={innerValue}
                 onChange={handleChange}
-                className={`${className}`}
+                className={`[&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-moz-number-spin-box]:appearance-none ${className}`}
                 style={{
                     ...style,
                     width: `${width + 4}px`,
+                    MozAppearance: 'textfield',
                 }}
             />
         </div>

@@ -11,14 +11,19 @@ type CalculationResultAreaProps = {
 export const CalculationResultArea = ({ calculationResults }: CalculationResultAreaProps) => {
     const container =
         calculationResults.length > 0 ? (
-            <div className="grid grid-cols-4 gap-y-4 calculation-area rounded-3xl p-2">
+            <div
+                className="grid grid-cols-4 gap-y-4 calculation-area rounded-3xl p-2"
+                aria-label="Calculation Results:"
+            >
                 {calculationResults.map((result, index) => (
                     <JellyResult key={index} calculationResult={result} />
                 ))}
             </div>
         ) : (
             <div className="flex calculation-area rounded-3xl p-2 h-20 items-center justify-center">
-                <p className="cookie-run-font text-white">Required Star Jellies</p>
+                <p className="cookie-run-font text-white" aria-label="No calculation result">
+                    Required Star Jellies
+                </p>
             </div>
         );
 
@@ -28,8 +33,11 @@ export const CalculationResultArea = ({ calculationResults }: CalculationResultA
                 <img src={hot_time_balloon} className="w-18 h-8" />
 
                 <div className="absolute top-1 right-1 flex flex-row items-center">
-                    <img src={hot_time_icon} alt="Burning time bonus" className="w-4" />
-                    <p className="cookie-run-font text-outline-sm text-yellow-300 text-sm">
+                    <img src={hot_time_icon} className="w-4 mr-1" />
+                    <p
+                        className="cookie-run-font text-outline-sm text-yellow-300 text-sm"
+                        aria-label="Total EXP efficiency being applied"
+                    >
                         {calculationResults[0] ? calculationResults[0].expEfficiency : 0}%
                     </p>
                     <img src={hot_time_arrow} className="w-4" />
