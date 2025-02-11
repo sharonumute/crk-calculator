@@ -1,3 +1,5 @@
+import { Input } from '@/components/shared/Input';
+
 type StyledInputProps = {
     label: string;
     type: React.HTMLInputTypeAttribute;
@@ -10,9 +12,9 @@ type StyledInputProps = {
 export const StyledInput = (props: StyledInputProps) => (
     <div>
         <label className="block text-sm font-medium mb-1 text-white">{props.label}</label>
-        <input
+        <Input
             type={props.type}
-            value={Number(props.value).toString()}
+            value={props.value}
             onChange={props.onChange}
             className="w-full p-2 border rounded text-white"
             min={props.min}

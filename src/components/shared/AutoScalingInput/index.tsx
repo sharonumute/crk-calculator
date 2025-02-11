@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import './AutoScalingInput.css';
+import { Input } from '@/components/shared/Input';
 
 interface AutoScalingInputProps {
     value: number;
@@ -64,25 +65,15 @@ export const AutoScalingInput = ({
         return window.removeEventListener('resize', () => updateFontSize());
     }, [updateFontSize]);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = e.target.value;
-
-        if (Number(newValue) <= max) {
-            onChange?.(e);
-        } else {
-            e.target.value = value.toString();
-        }
-    };
-
     return (
         <div className="absolute inset-x-0 bottom-1 z-40">
             <div className="flex justify-center px-1 md:pb-2">
                 <div ref={containerRef} className="w-full md:w-3/4">
-                    <input
+                    <Input
                         ref={inputRef}
                         type="number"
-                        value={Number(value).toString()}
-                        onChange={handleChange}
+                        value={value}
+                        onChange={onChange}
                         className={
                             className +
                             ' w-full cookie-run-font text-outline-sm text-white text-center appearance-none leading-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all duration-200 on-focus'
