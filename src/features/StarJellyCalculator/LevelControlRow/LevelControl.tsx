@@ -1,4 +1,4 @@
-import { Input } from '@/components/shared/Input';
+import { AutoWidthInput } from '@/components/shared/AutoWidthInput';
 
 type LevelControlProps = {
     value: number;
@@ -8,15 +8,19 @@ type LevelControlProps = {
 
 export const LevelControl = (props: LevelControlProps) => {
     return (
-        <div>
-            <Input
-                type="number"
-                value={props.value}
-                onChange={props.onChange}
-                className={props.className + ' text-white'}
-                max={90}
-                min={0}
-            />
+        <div className={'relative w-fit'}>
+            <div className="relative flex flex-row cookie-run-font font-bold text-3xl">
+                <p className={props.className}>Lv.</p>
+                <AutoWidthInput
+                    type="number"
+                    value={props.value}
+                    onChange={props.onChange}
+                    className={props.className + ' border-1 border-gray-500 bg-white rounded opacity-90'}
+                    max={90}
+                    min={0}
+                    style={{ height: 30 }}
+                />
+            </div>
         </div>
     );
 };

@@ -12,10 +12,24 @@ type LevelControlRowProps = {
 
 export const LevelControlRow = (props: LevelControlRowProps) => {
     return (
-        <div className="grid grid-cols-3 gap-4">
-            <LevelControl value={props.currentLevel} onChange={props.onCurrentLevelChange} />
-            <img src={arrow_progress} className="arrow_progress_green" />
-            <LevelControl value={props.targetLevel} onChange={props.onTargetLevelChange} />
+        <div className="grid grid-cols-[1fr_auto_1fr] scale-75">
+            <div className="flex justify-end pt-0.5">
+                <LevelControl
+                    value={props.currentLevel}
+                    onChange={props.onCurrentLevelChange}
+                    className="text-gray-600"
+                />
+            </div>
+            <div className="flex justify-center items-center">
+                <img src={arrow_progress} className="arrow_progress_green scale-75" />
+            </div>
+            <div className="flex justify-start pt-0.5">
+                <LevelControl
+                    value={props.targetLevel}
+                    onChange={props.onTargetLevelChange}
+                    className="text-green-500"
+                />
+            </div>
         </div>
     );
 };
