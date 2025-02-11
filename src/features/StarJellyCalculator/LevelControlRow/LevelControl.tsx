@@ -15,10 +15,9 @@ export const LevelControl = (props: LevelControlProps) => {
                     type="number"
                     value={props.value}
                     onChange={props.onChange}
-                    className={props.className + ' border-1 border-gray-500 bg-white rounded opacity-90'}
+                    className={props.className}
                     max={90}
                     min={0}
-                    style={{ height: 30 }}
                 />
             </div>
         </div>

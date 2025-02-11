@@ -1,4 +1,4 @@
-import { arrow_progress } from '@/assets/images/icons';
+import { arrow_progress, edit } from '@/assets/images/icons';
 import { LevelControl } from './LevelControl';
 import './LevelControlRow.css';
 
@@ -13,6 +13,7 @@ type LevelControlRowProps = {
 export const LevelControlRow = (props: LevelControlRowProps) => {
     return (
         <div className="grid grid-cols-[1fr_auto_1fr] scale-75">
+            <img src={edit} alt="Editable" className="absolute w-5 right-8 z-10" />
             <div className="flex justify-end pt-0.5">
                 <LevelControl
                     value={props.currentLevel}
