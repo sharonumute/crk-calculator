@@ -13,8 +13,8 @@ import {
 import { MAX_JELLIES } from '@/features/StarJellyCalculator/consts';
 import { checkbox_off, checkbox_on, edit } from '@/assets/images/icons';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { AutoScalingInput } from '@/components/shared/AutoScalingInput';
 import { useElementSize } from '@/hooks/useElementSize';
+import { AutoScalingInput } from '@/components/shared/AutoScalingInput';
 
 type JellyControlProps = {
     jelly: StarJelly;

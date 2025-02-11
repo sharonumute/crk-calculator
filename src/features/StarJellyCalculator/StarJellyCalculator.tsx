@@ -125,7 +125,7 @@ export const StarJellyCalculator = () => {
                     Star Jelly Calculator
                 </h1>
             </PanelHeader>
-            <div className="card_content p-6">
+            <div className="card-content p-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                     <div className="space-y-6">
                         <div className="grid grid-cols-2 gap-4">

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import './AutoScalingInput.css';
+import './shared.css';
 import { Input } from '@/components/shared/Input';
 
 interface AutoScalingInputProps {

@@ -1,5 +1,5 @@
-import { blueDefaultButton_Part1, blueDefaultButton_Part2, blueDefaultButton_Part3 } from '@/assets/images/buttons';
-import './StyledButton.css';
+import { blueDefaultButton_left, blueDefaultButton_middle, blueDefaultButton_right } from '@/assets/images/buttons';
+import './shared.css';
 
 type StyledButtonProps = {
     label: string;
@@ -15,9 +15,9 @@ export const StyledButton = (props: StyledButtonProps) => {
     return (
         <button onClick={props.onClick} className={className}>
             <div className="w-full relative h-16 flex items-stretch cursor-pointer group">
-                <img src={blueDefaultButton_Part1} className="rounded-l-lg flex-shrink-0 relative z-10" />
-                <img src={blueDefaultButton_Part2} className="flex-grow -mx-018" />
-                <img src={blueDefaultButton_Part3} className="rounded-r-lg flex-shrink-0 relative z-10" />
+                <img src={blueDefaultButton_left} className="rounded-l-lg flex-shrink-0 relative z-10" />
+                <img src={blueDefaultButton_middle} className="flex-grow -mx-018" />
+                <img src={blueDefaultButton_right} className="rounded-r-lg flex-shrink-0 relative z-10" />
                 <span className="absolute inset-0 flex items-center justify-center text-white drop-shadow cookie-run-font font-bold text-3xl text-outline">
                     {props.label}
                 </span>

@@ -1,25 +1,24 @@
-import blue_panel_top_left from './blue_panel/blue_panel_top_left.png';
-import blue_panel_top_right from './blue_panel/blue_panel_top_right.png';
-import blue_panel_top_middle from './blue_panel/blue_panel_top_middle.png';
-import blue_panel_center_left from './blue_panel/blue_panel_center_left.png';
-import blue_panel_center_right from './blue_panel/blue_panel_center_right.png';
-import blue_panel_center_middle from './blue_panel/blue_panel_center_middle.png';
-import blue_panel_bottom_left from './blue_panel/blue_panel_bottom_left.png';
-import blue_panel_bottom_right from './blue_panel/blue_panel_bottom_right.png';
-import blue_panel_bottom_middle from './blue_panel/blue_panel_bottom_middle.png';
+import bluePanelBackground_topLeft from './BluePanelBackground/blue_panel_top_left.png';
+import bluePanelBackground_topRight from './BluePanelBackground/blue_panel_top_right.png';
+import bluePanelBackground_topMiddle from './BluePanelBackground/blue_panel_top_middle.png';
+import bluePanelBackground_centerLeft from './BluePanelBackground/blue_panel_center_left.png';
+import bluePanelBackground_centerRight from './BluePanelBackground/blue_panel_center_right.png';
+import bluePanelBackground_centerMiddle from './BluePanelBackground/blue_panel_center_middle.png';
+import bluePanelBackground_bottomLeft from './BluePanelBackground/blue_panel_bottom_left.png';
+import bluePanelBackground_bottomRight from './BluePanelBackground/blue_panel_bottom_right.png';
+import bluePanelBackground_bottomMiddle from './BluePanelBackground/blue_panel_bottom_middle.png';
 
 import background_checkbox from './background_checkbox.png';
 
 export {
-    blue_panel_bottom_left,
-    blue_panel_bottom_middle,
-    blue_panel_bottom_right,
-    blue_panel_center_left,
-    blue_panel_center_middle,
-    blue_panel_center_right,
-    blue_panel_top_left,
-    blue_panel_top_middle,
-    blue_panel_top_right,
+    bluePanelBackground_bottomLeft,
+    bluePanelBackground_bottomMiddle,
+    bluePanelBackground_bottomRight,
+    bluePanelBackground_centerLeft,
+    bluePanelBackground_centerMiddle,
+    bluePanelBackground_centerRight,
+    bluePanelBackground_topLeft,
+    bluePanelBackground_topMiddle,
+    bluePanelBackground_topRight,
+    background_checkbox,
 };
-
-export { background_checkbox };

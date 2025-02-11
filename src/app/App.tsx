@@ -1,4 +1,4 @@
-import { StarJellyCalculator } from '@/features/StarJellyCalculator';
+import { StarJellyCalculator } from '@/features/StarJellyCalculator/StarJellyCalculator';
 
 function App() {
     return (
