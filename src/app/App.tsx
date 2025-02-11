@@ -2,7 +2,7 @@ import { StarJellyCalculator } from '@/features/StarJellyCalculator/StarJellyCal
 
 function App() {
     return (
-        <div className="bg-slate-900 p-6">
+        <div className="checkered-background p-6">
             <StarJellyCalculator />
         </div>
     );

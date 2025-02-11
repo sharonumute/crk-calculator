@@ -11,7 +11,6 @@ import expGivenDataRaw from '@/assets/data/exp_given_by_jellies.csv?raw';
 import Papa from 'papaparse';
 import { LevelControlRow } from './LevelControlRow/LevelControlRow';
 import { PanelHeader } from '@/components/shared/PanelHeader';
-import './StarJellyCalculator.css';
 import { PanelFooter } from '@/components/shared/PanelFooter';
 
 const EXP_REQUIREMENTS = Papa.parse<EXP_REQUIREMENT_ROW>(starJelliesDataRaw, {
