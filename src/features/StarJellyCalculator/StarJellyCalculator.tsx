@@ -13,6 +13,7 @@ import { LevelControlRow } from './LevelControlRow/LevelControlRow';
 import { PanelHeader } from '@/components/shared/PanelHeader';
 import { PanelFooter } from '@/components/shared/PanelFooter';
 import { CalculationResultArea } from './CalculationResultArea/CalculationResultArea';
+import { ExpProgressBar } from './ExpProgressBar/ExpProgressBar';
 
 const EXP_REQUIREMENTS = Papa.parse<EXP_REQUIREMENT_ROW>(starJelliesDataRaw, {
     header: true,
@@ -111,6 +112,10 @@ export const StarJellyCalculator = () => {
         }
     };
 
+    const calculateProvidedExp = () => {
+        return calculationResults.reduce((sum, result) => sum + result.expProvided, 0);
+    };
+
     return (
         <div className="w-full rounded-3xl shadow-sm border-transparent flex flex-col">
             <PanelHeader className="w-full h-11">
@@ -118,20 +123,20 @@ export const StarJellyCalculator = () => {
                     Star Jelly Calculator
                 </h1>
             </PanelHeader>
-            <div className="card-content p-2">
+            <div className="card-content inner_border p-2">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                     <div className="space-y-6">
-                        <div className="grid grid-cols-1 gap-4">
+                        <div className="grid grid-cols-1 gap-2">
                             <LevelControlRow
                                 currentLevel={currentLevel}
                                 targetLevel={targetLevel}
                                 onCurrentLevelChange={(e) => setCurrentLevel(Number(e.target.value))}
                                 onTargetLevelChange={(e) => setTargetLevel(Number(e.target.value))}
                             />
-                            <div className="p-4 bg-blue-50 border border-blue-200 rounded mb-4">
-                                <span className="font-medium">Total EXP Required: </span>
-                                {calculateRequiredExp(currentLevel, targetLevel)} EXP
-                            </div>
+                            <ExpProgressBar
+                                totalExpProvided={calculateProvidedExp()}
+                                totalExpRequired={calculateRequiredExp(currentLevel, targetLevel)}
+                            />
                         </div>
 
                         <div className="grid grid-cols-2 gap-4 items-end">

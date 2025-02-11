@@ -136,6 +136,9 @@
 
 .card-content {
     background-color: #f3e9df;
+}
+
+.inner_border {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -148,4 +151,17 @@
     background-repeat: repeat;
     background-size: 50px 50px;
     background-position: center;
+}
+
+.-translate-x-0\.15 {
+    --tw-translate-x: calc(var(--spacing) * -0.15);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+}
+
+.-mx-0\.18 {
+    margin-inline: calc(var(--spacing) * -0.18);
+}
+
+.-mx-0\.1 {
+    margin-inline: calc(var(--spacing) * -0.1);
 }
