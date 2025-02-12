@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { hot_time_balloon } from '@/assets/images/balloons';
-import { hot_time_icon, hot_time_arrow, minus_red_circle, hot_time_icon_big } from '@/assets/images/icons';
+import { hot_time_icon, hot_time_arrow, plus_red_circle } from '@/assets/images/icons';
 import { labBonusPercentages } from '../consts';
 import { StyledSelect } from '@/components/shared/StyledSelect';
 import { Counter } from '@/components/shared/Counter';
@@ -110,12 +110,7 @@ const BonusButton = ({
                 aria-label="Modify EXP Efficiency"
             >
                 {labUpgradeLevel + burningTimePercent === 0 ? (
-                    <>
-                        <img src={minus_red_circle} className="w-8 h-8" />
-                        <div className="absolute top-0 right-1 flex flex-row items-center">
-                            <img src={hot_time_icon_big} className="w-6" />
-                        </div>
-                    </>
+                    <img src={plus_red_circle} className="w-8 h-8" />
                 ) : (
                     <>
                         <img src={hot_time_balloon} className="w-18 h-8" />

@@ -7,7 +7,7 @@ export const Input = (props: InputProps) => {
         const newValue = e.target.value;
 
         if (props.type === 'number' && props.max) {
-            if (Number(newValue) <= Number(props.max)) {
+            if (Number(newValue) <= Number(props.max) && Number(newValue) >= Number(props.min)) {
                 props.onChange?.(e);
             } else {
                 e.target.value = props.value?.toString() || '0';

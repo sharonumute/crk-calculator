@@ -47,6 +47,7 @@ export const Counter = ({ value, onChange, max }: CounterProps) => {
                     value={value}
                     onChange={onChange}
                     max={max}
+                    min={0}
                     className="w-full px-12 h-10 bg-black inner-border border-gray-700 border-1 cookie-run-font text-outline-sm text-xl text-white rounded-full focus-visible:outline-gray-700"
                 />
 
