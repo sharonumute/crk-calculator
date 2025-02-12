@@ -1,6 +1,6 @@
 import { StarJelly } from '@/features/StarJellyCalculator/types';
 import { JellyControl } from './JellyControl';
-import PanelBackground from '@/components/shared/PanelBackground';
+import { PanelBackground } from '@/components/shared/PanelBackground';
 
 type JellyControlGridProps = {
     setAvailableJellies: (jellies: StarJelly[]) => void;

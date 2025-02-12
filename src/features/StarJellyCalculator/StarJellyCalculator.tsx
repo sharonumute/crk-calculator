@@ -1,10 +1,8 @@
-import { useState, useCallback, useEffect, useMemo } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { CalculationResult, EXP_GIVEN_ROW, EXP_REQUIREMENT_ROW, StarJelly } from './types';
 import { JellyControlGrid } from './JellyControlGrid/JellyControlGrid';
-import { StyledInput } from '@/components/shared/StyledInput';
-import { StyledSelect } from '@/components/shared/StyledSelect';
 import { StyledButton } from '@/components/shared/StyledButton';
-import { MAX_JELLIES } from './consts';
+import { labBonusPercentages, MAX_JELLIES } from './consts';
 import { useWindowSize } from '@/hooks/useWindowSize';
 import starJelliesDataRaw from '@/assets/data/required_star_jellies_per_level.csv?raw';
 import expGivenDataRaw from '@/assets/data/exp_given_by_jellies.csv?raw';
@@ -14,6 +12,7 @@ import { PanelHeader } from '@/components/shared/PanelHeader';
 import { PanelFooter } from '@/components/shared/PanelFooter';
 import { CalculationResultArea } from './CalculationResultArea/CalculationResultArea';
 import { ExpProgressBar } from './ExpProgressBar/ExpProgressBar';
+import BonusButton from './BonusButton/BonusButton';
 
 const EXP_REQUIREMENTS = Papa.parse<EXP_REQUIREMENT_ROW>(starJelliesDataRaw, {
     header: true,
@@ -35,8 +34,6 @@ export const StarJellyCalculator = () => {
     const [calculationResults, setCalculationResults] = useState<CalculationResult[]>([]);
     const [labUpgradeLevel, setLabUpgradeLevel] = useState(0);
     const [burningTimePercent, setBurningTimePercent] = useState(0);
-    // Lab upgrade bonuses: 0%, 1%, 3%, 5%, 7%, 10%
-    const labBonusPercentages = useMemo(() => [0, 0.01, 0.03, 0.05, 0.07, 0.1], []);
 
     const calculateEffectiveJellyExp = useCallback(
         (baseExp: number) => {
@@ -45,7 +42,7 @@ export const StarJellyCalculator = () => {
 
             return Math.round(baseExp * labBonus * burningBonus);
         },
-        [burningTimePercent, labUpgradeLevel, labBonusPercentages]
+        [burningTimePercent, labUpgradeLevel]
     );
 
     const [availableJellies, setAvailableJellies] = useState<StarJelly[]>(
@@ -95,7 +92,6 @@ export const StarJellyCalculator = () => {
                     jelly: jelly,
                     count: jelliesNeeded,
                     expProvided: jelliesNeeded * jelly.effectiveExp,
-                    expEfficiency: labBonusPercentages[labUpgradeLevel] * 100 + burningTimePercent,
                 });
                 remainingExp -= jelliesNeeded * jelly.effectiveExp;
             }
@@ -123,7 +119,7 @@ export const StarJellyCalculator = () => {
                     Star Jelly Calculator
                 </h1>
             </PanelHeader>
-            <div className="card-content inner_border p-2">
+            <div className="card-content inner-border border-3 border-black p-2">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                     <div className="space-y-6">
                         <div className="grid grid-cols-1 gap-2">
@@ -139,38 +135,20 @@ export const StarJellyCalculator = () => {
                             />
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4 items-end">
-                            <StyledSelect
-                                label="Lab Upgrade Level (1-5)"
-                                value={labUpgradeLevel}
-                                onChange={(e) => setLabUpgradeLevel(Number(e.target.value))}
-                                options={[
-                                    'No Upgrade',
-                                    'Level 1 (+1%)',
-                                    'Level 2 (+3%)',
-                                    'Level 3 (+5%)',
-                                    'Level 4 (+7%)',
-                                    'Level 5 (+10%)',
-                                ]}
-                            />
-
-                            <StyledInput
-                                label="Burning Time Bonus (%)"
-                                type="number"
-                                value={burningTimePercent}
-                                onChange={(e) => setBurningTimePercent(Number(e.target.value))}
-                                min="0"
-                                max="100"
-                            />
-                        </div>
-
                         {errorMessage && (
                             <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded">
                                 {errorMessage}
                             </div>
                         )}
 
-                        <CalculationResultArea calculationResults={calculationResults} />
+                        <BonusButton
+                            burningTimePercent={burningTimePercent}
+                            labUpgradeLevel={labUpgradeLevel}
+                            onBurningTimePercentChange={(e) => setBurningTimePercent(Number(e.target.value))}
+                            onLabUpgradeLevelChange={(e) => setLabUpgradeLevel(Number(e.target.value))}
+                        >
+                            <CalculationResultArea calculationResults={calculationResults} />
+                        </BonusButton>
                     </div>
 
                     <div className={isMobile ? 'flex justify-center w-full' : 'w-full'}>
