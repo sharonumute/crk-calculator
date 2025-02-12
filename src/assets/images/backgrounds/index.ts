@@ -34,6 +34,10 @@ import blueDefaultControlBackground_left from './BlueDefaultControlBackground/bl
 import blueDefaultControlBackground_middle from './BlueDefaultControlBackground/blue_select_middle.png';
 import blueDefaultControlBackground_right from './BlueDefaultControlBackground/blue_select_right.png';
 
+import whiteInputBackground_left from './WhiteInputBackground/InputFieldBackground_left.png';
+import whiteInputBackground_middle from './WhiteInputBackground/InputFieldBackground_middle.png';
+import whiteInputBackground_right from './WhiteInputBackground/InputFieldBackground_right.png';
+
 import background_checkbox from './background_checkbox.png';
 
 export {
@@ -69,4 +73,7 @@ export {
     blueDefaultControlBackground_left,
     blueDefaultControlBackground_middle,
     blueDefaultControlBackground_right,
+    whiteInputBackground_left,
+    whiteInputBackground_middle,
+    whiteInputBackground_right,
 };

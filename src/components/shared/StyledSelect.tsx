@@ -5,14 +5,11 @@ import {
 } from '@/assets/images/backgrounds';
 import { down_arrow_filled } from '@/assets/images/icons';
 
-type StyledSelectProps = {
-    value: string | number;
+type StyledSelectProps = React.SelectHTMLAttributes<HTMLSelectElement> & {
     options: string[];
-    onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-    className?: string;
 };
 
-export const StyledSelect = ({ value, options, onChange, className }: StyledSelectProps) => (
+export const StyledSelect = ({ value, options, onChange, className, ...props }: StyledSelectProps) => (
     <div>
         <div className={className + ' relative'}>
             <div className="absolute inset-0 flex pointer-events-none">
@@ -25,6 +22,7 @@ export const StyledSelect = ({ value, options, onChange, className }: StyledSele
                 value={value}
                 onChange={onChange}
                 className="relative w-full h-full px-2 pr-10 pl-4 text-white appearance-none bg-transparent focus-visible:border-0 cookie-run-font text-outline-sm focus-visible:outline-0"
+                {...props}
             >
                 {options.map((option, index) => (
                     <option key={index} value={index}>

@@ -15,6 +15,7 @@ import gnome_empty from './icon_gnome_list_empty_mono.png';
 import white_plus from './button_icon_plus.png';
 import plus_red_circle from './social_button_add.png';
 import down_arrow_filled from './popup_button_select.png';
+import inquire from './button_inquire.png';
 
 export {
     checkbox_off,
@@ -34,4 +35,5 @@ export {
     white_plus,
     plus_red_circle,
     down_arrow_filled,
+    inquire,
 };

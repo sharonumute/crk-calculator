@@ -14,6 +14,7 @@ import { CalculationResultArea } from './CalculationResultArea/CalculationResult
 import { ExpProgressBar } from './ExpProgressBar/ExpProgressBar';
 import { StyledSelect } from '@/components/shared/StyledSelect';
 import { StyledInput } from '@/components/shared/StyledInput';
+import { hot_time_icon_big, inquire } from '@/assets/images/icons';
 
 const EXP_REQUIREMENTS = Papa.parse<EXP_REQUIREMENT_ROW>(starJelliesDataRaw, {
     header: true,
@@ -116,7 +117,7 @@ export const StarJellyCalculator = () => {
     };
 
     return (
-        <div className="w-full rounded-3xl shadow-sm border-transparent flex flex-col">
+        <div className="w-full md:w-250 rounded-3xl shadow-sm border-transparent flex flex-col">
             <PanelHeader className="w-full h-11">
                 <h1 className="flex items-center justify-center text-white drop-shadow cookie-run-font font-bold text-lg text-outline-sm pt-1 tracking-wider h-full">
                     Star Jelly Calculator
@@ -124,7 +125,7 @@ export const StarJellyCalculator = () => {
             </PanelHeader>
             <div className="card-content inner-border border-3 border-black p-2">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-                    <div className="space-y-6">
+                    <div className="space-y-2">
                         <div className="grid grid-cols-1 gap-2">
                             <LevelControlRow
                                 currentLevel={currentLevel}
@@ -136,7 +137,7 @@ export const StarJellyCalculator = () => {
                                 totalExpProvided={calculateProvidedExp()}
                                 totalExpRequired={calculateRequiredExp(currentLevel, targetLevel)}
                             />
-                            <div className="grid grid-cols-2 gap-1">
+                            <div className="grid grid-cols-[1fr_auto_1fr] gap-1">
                                 <StyledSelect
                                     value={labUpgradeLevel}
                                     onChange={(e) => setLabUpgradeLevel(Number(e.target.value))}
@@ -149,13 +150,18 @@ export const StarJellyCalculator = () => {
                                         'Level 4 (+7%)',
                                         'Level 5 (+10%)',
                                     ]}
+                                    aria-label="Pick lab upgrade level"
                                 />
+                                <img src={inquire} className="h-7" />
                                 <StyledInput
                                     type="number"
                                     value={burningTimePercent}
                                     onChange={(e) => setBurningTimePercent(Number(e.target.value))}
                                     min={0}
                                     max={100}
+                                    subtitle={<img src={hot_time_icon_big} />}
+                                    className="h-7"
+                                    aria-label="Enter burning time percent"
                                 />
                             </div>
                         </div>
@@ -181,7 +187,7 @@ export const StarJellyCalculator = () => {
                 </div>
             </div>
 
-            <PanelFooter className="w-full h-20">
+            <PanelFooter className="w-full h-20 px-20">
                 <StyledButton label="CALCULATE" onClick={calculateOptimalJellyUsage} variant="BrightBlueButton" />
             </PanelFooter>
         </div>
