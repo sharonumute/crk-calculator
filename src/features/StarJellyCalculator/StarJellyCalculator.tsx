@@ -12,7 +12,6 @@ import { PanelHeader } from '@/components/shared/PanelHeader';
 import { PanelFooter } from '@/components/shared/PanelFooter';
 import { CalculationResultArea } from './CalculationResultArea/CalculationResultArea';
 import { ExpProgressBar } from './ExpProgressBar/ExpProgressBar';
-import BonusButton from './BonusButton/BonusButton';
 import { StyledSelect } from '@/components/shared/StyledSelect';
 import { StyledInput } from '@/components/shared/StyledInput';
 
@@ -36,6 +35,7 @@ export const StarJellyCalculator = () => {
     const [calculationResults, setCalculationResults] = useState<CalculationResult[]>([]);
     const [labUpgradeLevel, setLabUpgradeLevel] = useState(0);
     const [burningTimePercent, setBurningTimePercent] = useState(0);
+    const [totalEffectiveMultiplier, setTotalEffectiveMultiplier] = useState(0);
 
     const calculateEffectiveJellyExp = useCallback(
         (baseExp: number) => {
@@ -100,6 +100,7 @@ export const StarJellyCalculator = () => {
         }
 
         setCalculationResults(result);
+        setTotalEffectiveMultiplier(labBonusPercentages[labUpgradeLevel] * 100 + burningTimePercent);
 
         if (remainingExp > 0) {
             setErrorMessage(
@@ -139,7 +140,7 @@ export const StarJellyCalculator = () => {
                                 <StyledSelect
                                     value={labUpgradeLevel}
                                     onChange={(e) => setLabUpgradeLevel(Number(e.target.value))}
-                                    className="h-7"
+                                    className="h-7 text-xs"
                                     options={[
                                         'No Lab Upgrade',
                                         'Level 1 (+1%)',
@@ -165,14 +166,10 @@ export const StarJellyCalculator = () => {
                             </div>
                         )}
 
-                        <BonusButton
-                            burningTimePercent={burningTimePercent}
-                            labUpgradeLevel={labUpgradeLevel}
-                            onBurningTimePercentChange={(e) => setBurningTimePercent(Number(e.target.value))}
-                            onLabUpgradeLevelChange={(e) => setLabUpgradeLevel(Number(e.target.value))}
-                        >
-                            <CalculationResultArea calculationResults={calculationResults} />
-                        </BonusButton>
+                        <CalculationResultArea
+                            calculationResults={calculationResults}
+                            totalEffectiveMultiplier={totalEffectiveMultiplier}
+                        />
                     </div>
 
                     <div className={isMobile ? 'flex justify-center w-full' : 'w-full'}>

@@ -24,7 +24,7 @@ export const StyledSelect = ({ value, options, onChange, className }: StyledSele
             <select
                 value={value}
                 onChange={onChange}
-                className="relative w-full p-2 pr-10 pl-3 text-white appearance-none bg-transparent focus-visible:border-0 cookie-run-font text-outline-sm text-sm focus-visible:outline-0"
+                className="relative w-full h-full px-2 pr-10 pl-4 text-white appearance-none bg-transparent focus-visible:border-0 cookie-run-font text-outline-sm focus-visible:outline-0"
             >
                 {options.map((option, index) => (
                     <option key={index} value={index}>
@@ -33,7 +33,6 @@ export const StyledSelect = ({ value, options, onChange, className }: StyledSele
                 ))}
             </select>
 
-            {/* Arrow icon */}
             <div
                 className="absolute right-2 top-1/2 w-4 h-4 -mt-2 pointer-events-none bg-no-repeat bg-center bg-contain"
                 style={{ backgroundImage: `url(${down_arrow_filled})` }}
