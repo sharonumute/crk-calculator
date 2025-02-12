@@ -25,6 +25,15 @@ import blackPanelBackground_bottomLeft from './BlackPanelBackground/black_panel_
 import blackPanelBackground_bottomRight from './BlackPanelBackground/black_panel_bottom_right.png';
 import blackPanelBackground_bottomMiddle from './BlackPanelBackground/black_panel_bottom_middle.png';
 
+import whiteControlBackground from './WhiteControlBackground/popup_cell_select_off.png';
+import whiteControlBackground_left from './WhiteControlBackground/white_control_background_left.png';
+import whiteControlBackground_middle from './WhiteControlBackground/white_control_background_middle.png';
+import whiteControlBackground_right from './WhiteControlBackground/white_control_background_right.png';
+
+import blueDefaultControlBackground_left from './BlueDefaultControlBackground/blue_select_left.png';
+import blueDefaultControlBackground_middle from './BlueDefaultControlBackground/blue_select_middle.png';
+import blueDefaultControlBackground_right from './BlueDefaultControlBackground/blue_select_right.png';
+
 import background_checkbox from './background_checkbox.png';
 
 export {
@@ -53,4 +62,11 @@ export {
     blackPanelBackground_topLeft,
     blackPanelBackground_topMiddle,
     blackPanelBackground_topRight,
+    whiteControlBackground,
+    whiteControlBackground_left,
+    whiteControlBackground_middle,
+    whiteControlBackground_right,
+    blueDefaultControlBackground_left,
+    blueDefaultControlBackground_middle,
+    blueDefaultControlBackground_right,
 };

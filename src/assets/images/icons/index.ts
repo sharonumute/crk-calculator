@@ -6,7 +6,7 @@ import plus_blue_circle from './button_cycle_blue_plus.png';
 import edit from './button_edit.png';
 import adventure from './town_main_button_icon_adventure.png';
 import arrow_progress from './icon_arrow_progress.png';
-import lab_gnome from './icon_balloon_gnome_lab.png';
+import lab_gnome from './town_main_button_icon_gnome_lab.png';
 import hot_time_arrow from './hot_time_icon_arrow.png';
 import hot_time_icon from './hot_time_icon.png';
 import minus_red_circle from './social_button_delete.png';
@@ -14,6 +14,7 @@ import hot_time_icon_big from './town_main_button_hot_time.png';
 import gnome_empty from './icon_gnome_list_empty_mono.png';
 import white_plus from './button_icon_plus.png';
 import plus_red_circle from './social_button_add.png';
+import down_arrow_filled from './popup_button_select.png';
 
 export {
     checkbox_off,
@@ -32,4 +33,5 @@ export {
     gnome_empty,
     white_plus,
     plus_red_circle,
+    down_arrow_filled,
 };

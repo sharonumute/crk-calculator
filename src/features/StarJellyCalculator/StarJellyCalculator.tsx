@@ -13,6 +13,8 @@ import { PanelFooter } from '@/components/shared/PanelFooter';
 import { CalculationResultArea } from './CalculationResultArea/CalculationResultArea';
 import { ExpProgressBar } from './ExpProgressBar/ExpProgressBar';
 import BonusButton from './BonusButton/BonusButton';
+import { StyledSelect } from '@/components/shared/StyledSelect';
+import { StyledInput } from '@/components/shared/StyledInput';
 
 const EXP_REQUIREMENTS = Papa.parse<EXP_REQUIREMENT_ROW>(starJelliesDataRaw, {
     header: true,
@@ -133,6 +135,28 @@ export const StarJellyCalculator = () => {
                                 totalExpProvided={calculateProvidedExp()}
                                 totalExpRequired={calculateRequiredExp(currentLevel, targetLevel)}
                             />
+                            <div className="grid grid-cols-2 gap-1">
+                                <StyledSelect
+                                    value={labUpgradeLevel}
+                                    onChange={(e) => setLabUpgradeLevel(Number(e.target.value))}
+                                    className="h-7"
+                                    options={[
+                                        'No Lab Upgrade',
+                                        'Level 1 (+1%)',
+                                        'Level 2 (+3%)',
+                                        'Level 3 (+5%)',
+                                        'Level 4 (+7%)',
+                                        'Level 5 (+10%)',
+                                    ]}
+                                />
+                                <StyledInput
+                                    type="number"
+                                    value={burningTimePercent}
+                                    onChange={(e) => setBurningTimePercent(Number(e.target.value))}
+                                    min={0}
+                                    max={100}
+                                />
+                            </div>
                         </div>
 
                         {errorMessage && (

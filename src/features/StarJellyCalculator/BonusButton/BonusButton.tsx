@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { hot_time_balloon } from '@/assets/images/balloons';
-import { hot_time_icon, hot_time_arrow, plus_red_circle } from '@/assets/images/icons';
+import { hot_time_icon, hot_time_arrow, plus_red_circle, lab_gnome, hot_time_icon_big } from '@/assets/images/icons';
 import { labBonusPercentages } from '../consts';
 import { StyledSelect } from '@/components/shared/StyledSelect';
 import { Counter } from '@/components/shared/Counter';
@@ -77,23 +77,27 @@ const BonusButton = ({
 
             <div ref={modalRef} className="absolute top-4 right-0 mt-2 z-50" onClick={(e) => e.stopPropagation()}>
                 <PanelBackground variant="Black">
-                    <div className="p-4 w-50">
+                    <div className="p-4 w-50 pt-6">
                         <div className="grid grid-cols-1 gap-4 items-end">
-                            <StyledSelect
-                                label="Lab Upgrade Level (1-5)"
-                                value={labUpgradeLevel}
-                                onChange={onLabUpgradeLevelChange}
-                                options={[
-                                    'No Upgrade',
-                                    'Level 1 (+1%)',
-                                    'Level 2 (+3%)',
-                                    'Level 3 (+5%)',
-                                    'Level 4 (+7%)',
-                                    'Level 5 (+10%)',
-                                ]}
-                            />
-
-                            <Counter value={burningTimePercent} onChange={onBurningTimePercentChange} max={100} />
+                            <div className="relative">
+                                <img src={lab_gnome} className="absolute inset-0 -left-1 -top-3 w-6 h-6 z-10" />
+                                <StyledSelect
+                                    value={labUpgradeLevel}
+                                    onChange={onLabUpgradeLevelChange}
+                                    options={[
+                                        'No Upgrade',
+                                        'Level 1 (+1%)',
+                                        'Level 2 (+3%)',
+                                        'Level 3 (+5%)',
+                                        'Level 4 (+7%)',
+                                        'Level 5 (+10%)',
+                                    ]}
+                                />
+                            </div>
+                            <div className="relative">
+                                <img src={hot_time_icon_big} className="absolute inset-0 -left-1 -top-3 w-6 h-6 z-10" />
+                                <Counter value={burningTimePercent} onChange={onBurningTimePercentChange} max={100} />
+                            </div>
                         </div>
                     </div>
                 </PanelBackground>
