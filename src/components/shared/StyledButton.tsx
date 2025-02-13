@@ -41,7 +41,7 @@ export const StyledButton = ({ label, onClick, className = '', variant = 'BlueBu
                 <img src={buttonParts[0]} className="rounded-l-lg flex-shrink-0 relative z-10" />
                 <img src={buttonParts[1]} className="flex-grow -mx-0.18" />
                 <img src={buttonParts[2]} className="rounded-r-lg flex-shrink-0 relative z-10" />
-                <span className="absolute inset-0 flex items-center justify-center text-white drop-shadow cookie-run-font font-bold text-3xl text-outline">
+                <span className="absolute inset-0 flex items-center justify-center text-white drop-shadow cookie-run-font font-bold text-3xl text-outline z-10">
                     {label}
                 </span>
             </div>

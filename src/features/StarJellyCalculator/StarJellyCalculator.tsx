@@ -117,7 +117,7 @@ export const StarJellyCalculator = () => {
     };
 
     return (
-        <div className="w-full md:w-250 rounded-3xl shadow-sm border-transparent flex flex-col">
+        <div className="max-w-250 min-w-80 rounded-3xl shadow-sm border-transparent flex flex-col">
             <PanelHeader className="w-full h-11">
                 <h1 className="flex items-center justify-center text-white drop-shadow cookie-run-font font-bold text-lg text-outline-sm pt-1 tracking-wider h-full">
                     Star Jelly Calculator
@@ -152,7 +152,7 @@ export const StarJellyCalculator = () => {
                                     ]}
                                     aria-label="Pick lab upgrade level"
                                 />
-                                <img src={inquire} className="h-7" />
+                                <img src={inquire} className="h-7 py-1" />
                                 <StyledInput
                                     type="number"
                                     value={burningTimePercent}
