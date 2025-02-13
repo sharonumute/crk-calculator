@@ -164,3 +164,7 @@
 .-mx-0\.1 {
     margin-inline: calc(var(--spacing) * -0.1);
 }
+
+.bg-beige {
+    background-color: #cfc1b6;
+}
