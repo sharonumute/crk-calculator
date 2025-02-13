@@ -1,5 +1,4 @@
 import { StarJelly } from '@/features/StarJellyCalculator/types';
-import { purpleSquareButton } from '@/assets/images/buttons';
 import {
     expJelly_1,
     expJelly_2,
@@ -15,6 +14,8 @@ import { checkbox_off, checkbox_on, edit } from '@/assets/images/icons';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useElementSize } from '@/hooks/useElementSize';
 import { AutoScalingInput } from '@/components/shared/AutoScalingInput';
+import { commonRarityPanel, epicRarityPanel, rareRarityPanel } from '@/assets/images/backgrounds';
+import { useJellyScaling } from '@/hooks/useJellyScaling';
 
 type JellyControlProps = {
     jelly: StarJelly;
@@ -26,6 +27,7 @@ const jelly_images = [expJelly_1, expJelly_2, expJelly_3, expJelly_4, expJelly_5
 
 export const JellyControl = (props: JellyControlProps) => {
     const [containerRef, size] = useElementSize<HTMLButtonElement>();
+    const scaleAndTranslate = useJellyScaling(props.jelly.level);
 
     return (
         <div className="flex flex-col items-center gap-0.5">
@@ -37,7 +39,10 @@ export const JellyControl = (props: JellyControlProps) => {
                 }`}
             >
                 <div className="relative w-full h-full">
-                    <img src={purpleSquareButton} className="absolute inset-0 w-full h-full object-cover" />
+                    <img
+                        src={useJellyRarity(props.jelly.level)}
+                        className="absolute inset-0 w-full h-full object-cover"
+                    />
 
                     <div className="absolute inset-0 z-30 flex items-center justify-center">
                         <TooltipProvider>
@@ -46,7 +51,7 @@ export const JellyControl = (props: JellyControlProps) => {
                                     <img
                                         src={jelly_images[props.jelly.level - 1]}
                                         alt={`Jelly level ${props.jelly.level}`}
-                                        className={`w-3/4 h-3/4 object-contain`}
+                                        className={`w-3/4 h-3/4 object-contain ${scaleAndTranslate}`}
                                     />
                                 </TooltipTrigger>
                                 <TooltipContent>
@@ -60,9 +65,9 @@ export const JellyControl = (props: JellyControlProps) => {
 
                     <div className="absolute top-2 left-2 z-40 w-1/4 h-1/4">
                         {props.jelly.selected ? (
-                            <img src={checkbox_on} alt="Checkbox selected" />
+                            <img src={checkbox_on} alt="Jelly selected" />
                         ) : (
-                            <img src={checkbox_off} alt="Checkbox unselected" />
+                            <img src={checkbox_off} alt="Jelly unselected" />
                         )}
                     </div>
 
@@ -80,4 +85,18 @@ export const JellyControl = (props: JellyControlProps) => {
             </button>
         </div>
     );
+};
+
+const useJellyRarity = (jellyLevel: number) => {
+    switch (jellyLevel) {
+        case 1:
+        case 2:
+            return commonRarityPanel;
+        case 3:
+        case 4:
+        case 5:
+            return rareRarityPanel;
+        default:
+            return epicRarityPanel;
+    }
 };

@@ -123,7 +123,7 @@ export const StarJellyCalculator = () => {
                 </h1>
             </PanelHeader>
             <div className="card-content inner-border border-3 border-black p-2">
-                <div className="grid grid-cols-1 md:grid-cols-2 items-start">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 items-start">
                     <div className="grid grid-cols-1 gap-2">
                         <LevelControlRow
                             currentLevel={currentLevel}
@@ -152,7 +152,7 @@ export const StarJellyCalculator = () => {
                         />
                     </div>
                     <PanelDivider className="block md:hidden">
-                        <span className="text-sm text-white text-outline-sm cookie-run-font">Avaialable Jellies</span>
+                        <span className="text-xs text-white text-outline-sm cookie-run-font">Available Jellies</span>
                     </PanelDivider>
                     <div className={isMobile ? 'flex justify-center w-full' : 'w-full'}>
                         <JellyControlGrid
@@ -168,6 +168,7 @@ export const StarJellyCalculator = () => {
                     onClick={calculateOptimalJellyUsage}
                     variant="BrightBlueButton"
                     aria-label="Calculate Results"
+                    className="text-lg w-3/4 h-14"
                 />
             </PanelFooter>
         </div>

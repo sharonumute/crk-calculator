@@ -40,6 +40,10 @@ import whiteInputBackground_right from './WhiteInputBackground/InputFieldBackgro
 
 import background_checkbox from './background_checkbox.png';
 
+import epicRarityPanel from './RarityPanelBackground/slot_item_epic.png';
+import commonRarityPanel from './RarityPanelBackground/slot_item_common.png';
+import rareRarityPanel from './RarityPanelBackground/slot_item_rare.png';
+
 export {
     bluePanelBackground_bottomLeft,
     bluePanelBackground_bottomMiddle,
@@ -76,4 +80,7 @@ export {
     whiteInputBackground_left,
     whiteInputBackground_middle,
     whiteInputBackground_right,
+    epicRarityPanel,
+    commonRarityPanel,
+    rareRarityPanel,
 };

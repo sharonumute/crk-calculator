@@ -10,6 +10,7 @@ import {
     expJelly_8,
 } from '@/assets/images/jellies';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { useJellyScaling } from '@/hooks/useJellyScaling';
 
 type JellyResultProps = {
     calculationResult: CalculationResult;
@@ -18,18 +19,7 @@ type JellyResultProps = {
 const jelly_images = [expJelly_1, expJelly_2, expJelly_3, expJelly_4, expJelly_5, expJelly_6, expJelly_7, expJelly_8];
 
 export const JellyResult = ({ calculationResult }: JellyResultProps) => {
-    const scaleAndTranslate = () => {
-        switch (calculationResult.jelly.level) {
-            case 1:
-                return 'scale-75';
-            case 2:
-                return 'scale-90';
-            case 3:
-                return 'scale-110 translate-y-1';
-            default:
-                return 'scale-100';
-        }
-    };
+    const scaleAndTranslate = useJellyScaling(calculationResult.jelly.level);
 
     const bonusActive = calculationResult.jelly.effectiveExp != calculationResult.jelly.baseExp;
     const effectiveExpColor = bonusActive ? 'text-red-200' : 'text-white';
@@ -49,7 +39,7 @@ export const JellyResult = ({ calculationResult }: JellyResultProps) => {
                         <img
                             src={jelly_images[calculationResult.jelly.level - 1]}
                             alt={`Jelly level ${calculationResult.jelly.level}`}
-                            className={`w-3/4 h-3/4 object-contain ${scaleAndTranslate()}`}
+                            className={`w-3/4 h-3/4 object-contain ${scaleAndTranslate}`}
                         />
                     </TooltipTrigger>
                     <TooltipContent>
