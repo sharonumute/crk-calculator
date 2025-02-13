@@ -12,9 +12,7 @@ import { PanelHeader } from '@/components/shared/PanelHeader';
 import { PanelFooter } from '@/components/shared/PanelFooter';
 import { CalculationResultArea } from './CalculationResultArea/CalculationResultArea';
 import { ExpProgressBar } from './ExpProgressBar/ExpProgressBar';
-import { StyledSelect } from '@/components/shared/StyledSelect';
-import { StyledInput } from '@/components/shared/StyledInput';
-import { hot_time_icon_big, inquire } from '@/assets/images/icons';
+import { BonusControlRow } from './BonusControlRow/BonusControlRow';
 
 const EXP_REQUIREMENTS = Papa.parse<EXP_REQUIREMENT_ROW>(starJelliesDataRaw, {
     header: true,
@@ -125,59 +123,33 @@ export const StarJellyCalculator = () => {
             </PanelHeader>
             <div className="card-content inner-border border-3 border-black p-2">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-                    <div className="space-y-2">
-                        <div className="grid grid-cols-1 gap-2">
-                            <LevelControlRow
-                                currentLevel={currentLevel}
-                                targetLevel={targetLevel}
-                                onCurrentLevelChange={(e) => setCurrentLevel(Number(e.target.value))}
-                                onTargetLevelChange={(e) => setTargetLevel(Number(e.target.value))}
-                            />
-                            <ExpProgressBar
-                                totalExpProvided={calculateProvidedExp()}
-                                totalExpRequired={calculateRequiredExp(currentLevel, targetLevel)}
-                            />
-                            <div className="grid grid-cols-[1fr_auto_1fr] gap-1">
-                                <StyledSelect
-                                    value={labUpgradeLevel}
-                                    onChange={(e) => setLabUpgradeLevel(Number(e.target.value))}
-                                    className="h-7 text-xs"
-                                    options={[
-                                        'No Lab Upgrade',
-                                        'Level 1 (+1%)',
-                                        'Level 2 (+3%)',
-                                        'Level 3 (+5%)',
-                                        'Level 4 (+7%)',
-                                        'Level 5 (+10%)',
-                                    ]}
-                                    aria-label="Pick lab upgrade level"
-                                />
-                                <img src={inquire} className="h-7 py-1" />
-                                <StyledInput
-                                    type="number"
-                                    value={burningTimePercent}
-                                    onChange={(e) => setBurningTimePercent(Number(e.target.value))}
-                                    min={0}
-                                    max={100}
-                                    subtitle={<img src={hot_time_icon_big} />}
-                                    className="h-7"
-                                    aria-label="Enter burning time percent"
-                                />
-                            </div>
-                        </div>
-
+                    <div className="grid grid-cols-1 gap-2">
+                        <LevelControlRow
+                            currentLevel={currentLevel}
+                            targetLevel={targetLevel}
+                            onCurrentLevelChange={(e) => setCurrentLevel(Number(e.target.value))}
+                            onTargetLevelChange={(e) => setTargetLevel(Number(e.target.value))}
+                        />
+                        <ExpProgressBar
+                            totalExpProvided={calculateProvidedExp()}
+                            totalExpRequired={calculateRequiredExp(currentLevel, targetLevel)}
+                        />
+                        <BonusControlRow
+                            labUpgradeLevel={labUpgradeLevel}
+                            onLabUpgradeLevelChange={(e) => setLabUpgradeLevel(Number(e.target.value))}
+                            burningTimePercent={burningTimePercent}
+                            onBurningTimePercentChange={(e) => setBurningTimePercent(Number(e.target.value))}
+                        />
                         {errorMessage && (
-                            <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+                            <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded ">
                                 {errorMessage}
                             </div>
                         )}
-
                         <CalculationResultArea
                             calculationResults={calculationResults}
                             totalEffectiveMultiplier={totalEffectiveMultiplier}
                         />
                     </div>
-
                     <div className={isMobile ? 'flex justify-center w-full' : 'w-full'}>
                         <JellyControlGrid
                             availableJellies={availableJellies}
@@ -186,9 +158,13 @@ export const StarJellyCalculator = () => {
                     </div>
                 </div>
             </div>
-
-            <PanelFooter className="w-full h-20 px-20">
-                <StyledButton label="CALCULATE" onClick={calculateOptimalJellyUsage} variant="BrightBlueButton" />
+            <PanelFooter className="w-full h-20">
+                <StyledButton
+                    label="CALCULATE"
+                    onClick={calculateOptimalJellyUsage}
+                    variant="BrightBlueButton"
+                    aria-label="Calculate Results"
+                />
             </PanelFooter>
         </div>
     );

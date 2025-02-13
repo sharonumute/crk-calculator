@@ -35,16 +35,13 @@ export const JellyResult = ({ calculationResult }: JellyResultProps) => {
     const effectiveExpColor = bonusActive ? 'text-red-200' : 'text-white';
     return (
         <div
-            className="relative min-w-16 aspect-square m-1"
+            className="relative min-w-16 aspect-square m-1 flex flex-col items-center justify-center"
             aria-label={`${calculationResult.count} Level ${calculationResult.jelly.level} jellies`}
         >
-            <div className="flex relative cookie-run-font text-xs text-white text-outline-sm items-center justify-center bg-black/25 rounded-full mb-1.5">
+            <div className="flex w-full relative cookie-run-font text-xs text-white text-outline-sm items-center justify-center bg-black/25 rounded-full mb-0.5">
                 <span>EXP</span>
-                <span className={effectiveExpColor}>&nbsp;{calculationResult.jelly.effectiveExp}</span>
+                <span className={effectiveExpColor}>&nbsp;{calculationResult.jelly.effectiveExp.toLocaleString()}</span>
             </div>
-            <p className="absolute z-10 cookie-run-font text-white text-outline-sm left-1/2 -translate-x-1/2 -bottom-1.5">
-                {calculationResult.count}
-            </p>
 
             <TooltipProvider>
                 <Tooltip>
@@ -52,14 +49,20 @@ export const JellyResult = ({ calculationResult }: JellyResultProps) => {
                         <img
                             src={jelly_images[calculationResult.jelly.level - 1]}
                             alt={`Jelly level ${calculationResult.jelly.level}`}
-                            className={`relative w-full h-full object-contain ${scaleAndTranslate()}`}
+                            className={`w-3/4 h-3/4 object-contain ${scaleAndTranslate()}`}
                         />
                     </TooltipTrigger>
                     <TooltipContent>
-                        <p className="cookie-run-font">{calculationResult.expProvided} Experience total</p>
+                        <p className="cookie-run-font">
+                            {calculationResult.expProvided.toLocaleString()} Experience total
+                        </p>
                     </TooltipContent>
                 </Tooltip>
             </TooltipProvider>
+
+            <p className="absolute z-10 cookie-run-font text-white text-outline-sm left-1/2 -translate-x-1/2 -bottom-1.5">
+                {calculationResult.count.toLocaleString()}
+            </p>
         </div>
     );
 };

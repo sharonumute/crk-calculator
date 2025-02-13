@@ -10,14 +10,20 @@ import './shared.css';
 
 type StyledButtonVariant = 'BrightBlueButton' | 'BlueButtonDefault';
 
-type StyledButtonProps = {
+type StyledButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     label: string;
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
     className?: string;
     variant?: StyledButtonVariant;
 };
 
-export const StyledButton = ({ label, onClick, className = '', variant = 'BlueButtonDefault' }: StyledButtonProps) => {
+export const StyledButton = ({
+    label,
+    onClick,
+    className = '',
+    variant = 'BlueButtonDefault',
+    ...props
+}: StyledButtonProps) => {
     const aggClassName =
         'w-full relative inline-flex items-center justify-center transition-all bg-transparent border-0 p-0 duration-75 hover:scale-105 active:scale-95 m-0 ' +
         className;
@@ -36,7 +42,7 @@ export const StyledButton = ({ label, onClick, className = '', variant = 'BlueBu
     }
 
     return (
-        <button onClick={onClick} className={aggClassName}>
+        <button onClick={onClick} className={aggClassName} {...props}>
             <div className="w-full relative h-16 flex items-stretch cursor-pointer group">
                 <img src={buttonParts[0]} className="rounded-l-lg flex-shrink-0 relative z-10" />
                 <img src={buttonParts[1]} className="flex-grow -mx-0.18" />

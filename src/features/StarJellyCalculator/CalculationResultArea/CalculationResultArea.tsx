@@ -14,7 +14,7 @@ export const CalculationResultArea = ({ calculationResults, totalEffectiveMultip
         <div className="relative">
             <BonusButton value={totalEffectiveMultiplier} />
             <div
-                className="grid grid-cols-4 gap-y-4 calculation-area rounded-3xl p-2"
+                className="grid grid-cols-4 gap-y-3 gap-x-[4%] calculation-area rounded-3xl p-3"
                 aria-label="Calculation Results:"
             >
                 {calculationResults.map((result, index) => (

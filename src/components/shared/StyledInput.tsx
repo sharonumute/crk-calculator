@@ -20,7 +20,7 @@ export const StyledInput = ({ className, subtitle, ...props }: StyledInputProps)
             </div>
 
             <Input
-                className="relative w-full h-full px-2 pr-10 pl-4 text-gray-500 appearance-none bg-transparent focus-visible:border-0 cookie-run-font focus-visible:outline-0"
+                className="relative w-full h-full px-2 pr-10 pl-4 text-gray-500 appearance-none bg-transparent focus-visible:border-0 cookie-run-font focus-visible:outline-0 z-10"
                 {...props}
             />
         </div>

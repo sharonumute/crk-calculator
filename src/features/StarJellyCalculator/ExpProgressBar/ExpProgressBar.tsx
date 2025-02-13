@@ -14,7 +14,7 @@ export const ExpProgressBar = ({ totalExpRequired, totalExpProvided }: ExpProgre
                 className="text-white drop-shadow cookie-run-font font-bold text-sm text-outline-sm"
                 aria-label={`${totalExpProvided} EXP Provided out of ${totalExpRequired} EXP Needed`}
             >
-                {totalExpProvided}/{totalExpRequired} EXP
+                {totalExpProvided.toLocaleString()}/{totalExpRequired.toLocaleString()} EXP
             </span>
         </ProgressBar>
     );
