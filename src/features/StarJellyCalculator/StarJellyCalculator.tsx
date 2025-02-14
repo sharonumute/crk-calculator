@@ -114,14 +114,14 @@ export const StarJellyCalculator = () => {
     };
 
     return (
-        <div className="min-w-72 rounded-3xl shadow-sm border-transparent flex flex-col">
+        <div className="rounded-3xl shadow-sm border-transparent flex flex-col container">
             <PanelHeader className="w-full h-11">
                 <h1 className="flex items-center justify-center text-white drop-shadow cookie-run-font font-bold text-lg text-outline-sm pt-1 tracking-wider h-full">
                     Star Jelly Calculator
                 </h1>
             </PanelHeader>
             <div className="card-content inner-border border-3 border-black p-2">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 items-start">
+                <div className="grid grid-cols-1 gap-x-4 items-start">
                     <div className="grid grid-cols-1 gap-2">
                         <LevelControlRow
                             currentLevel={currentLevel}
@@ -149,7 +149,7 @@ export const StarJellyCalculator = () => {
                             totalEffectiveMultiplier={totalEffectiveMultiplier}
                         />
                     </div>
-                    <PanelDivider className="block md:hidden">
+                    <PanelDivider>
                         <span className="text-xs text-white text-outline-sm cookie-run-font">Available Jellies</span>
                     </PanelDivider>
                     <div className="flex justify-center w-full">
@@ -166,7 +166,7 @@ export const StarJellyCalculator = () => {
                     onClick={calculateOptimalJellyUsage}
                     variant="BrightBlueButton"
                     aria-label="Calculate Results"
-                    className="text-xl w-3/4 h-15"
+                    className="text-xl w-3/4 h-14"
                 />
             </PanelFooter>
         </div>

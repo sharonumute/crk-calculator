@@ -7,13 +7,11 @@ function App() {
     const availablePages: Page[] = ['Star Jelly Calculator', 'Skill Powder Calculator', 'Promotion Calculator'];
     const [currentPage, setCurrentPage] = useState(availablePages[0]);
     return (
-        <div className="checkered-background w-screen">
+        <div className="checkered-background w-screen min-h-screen">
             <div className="max-w-7xl mx-auto">
-                <div className="flex flex-col justify-center items-center">
+                <div className="relative flex flex-col md:flex-row-reverse justify-center items-center">
                     <MenuBar pages={availablePages} setPage={setCurrentPage} />
-                    <div className="p-4 w-full">
-                        <StarJellyCalculator />
-                        <StarJellyCalculator />
+                    <div className="p-4 w-full min-w-80 max-w-2xl">
                         <StarJellyCalculator />
                     </div>
                 </div>

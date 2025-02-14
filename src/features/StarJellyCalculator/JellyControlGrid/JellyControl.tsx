@@ -30,11 +30,11 @@ export const JellyControl = (props: JellyControlProps) => {
     const scaleAndTranslate = useJellyScaling(props.jelly.level);
 
     return (
-        <div className="flex flex-col items-center gap-0.5">
+        <div className="flex flex-col items-center">
             <button
                 ref={containerRef}
                 onClick={props.onSelect}
-                className={`relative w-full h-full aspect-square max-w-32 max-h-32 duration-75 hover:scale-105 active:scale-95 cursor-pointer ${
+                className={`relative w-full sm:w-3/4 h-full aspect-square max-w-32 max-h-32 duration-75 hover:scale-105 active:scale-95 cursor-pointer ${
                     !props.jelly.selected ? 'brightness-50' : ''
                 }`}
             >

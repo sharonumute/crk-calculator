@@ -11,19 +11,19 @@ type MenuBarProps = {
 export const MenuBar = ({ pages, setPage }: MenuBarProps) => {
     const [isExpanded, setIsExpanded] = useState(true);
     return (
-        <div className="w-full">
-            <div className="flex gap-3 justify-end pt-2 pr-2">
-                <button className="duration-75 hover:scale-105 active:scale-95 flex items-center">
+        <div className="w-full md:w-min md:mb-auto">
+            <div className="relative flex gap-3 justify-end pt-2 pr-2">
+                <button className="w-8 duration-75 hover:scale-105 active:scale-95 flex items-center">
                     <img src={quest_book} className="w-8" />
                 </button>
 
-                <button className="duration-75 hover:scale-105 active:scale-95 flex items-center">
+                <button className="w-8 duration-75 hover:scale-105 active:scale-95 flex items-center">
                     <img src={notice} className="w-8" />
                 </button>
 
                 <button
                     onClick={() => setIsExpanded(!isExpanded)}
-                    className="duration-75 hover:scale-105 active:scale-95 flex items-center"
+                    className="w-8 duration-75 hover:scale-105 active:scale-95 flex items-center"
                 >
                     {isExpanded ? (
                         <img src={close_blue_circle} className="w-8" />
@@ -33,7 +33,6 @@ export const MenuBar = ({ pages, setPage }: MenuBarProps) => {
                 </button>
             </div>
 
-            {/* Expandable section */}
             {isExpanded && (
                 <div className="mt-2 flex flex-wrap gap-2 justify-end">
                     {pages.map((text, index) => (
@@ -43,7 +42,7 @@ export const MenuBar = ({ pages, setPage }: MenuBarProps) => {
                             onClick={() => setPage(text)}
                             variant="YellowButton"
                             aria-label={`Navigate to ${text}`}
-                            className="text-xs duration-75 hover:scale-105 active:scale-95"
+                            className="text-xs sm:text-base duration-75 hover:scale-105 active:scale-95 whitespace-nowrap"
                         />
                     ))}
                 </div>

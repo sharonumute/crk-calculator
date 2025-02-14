@@ -67,8 +67,8 @@ export const AutoScalingInput = ({
 
     return (
         <div className="absolute inset-x-0 bottom-1 z-40">
-            <div className="flex justify-center px-1 md:pb-2">
-                <div ref={containerRef} className="w-full md:w-3/4">
+            <div className="flex justify-center px-1 sm:pb-1">
+                <div ref={containerRef} className="w-full sm:w-3/4">
                     <Input
                         ref={inputRef}
                         type="number"

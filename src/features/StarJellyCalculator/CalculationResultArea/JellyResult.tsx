@@ -50,7 +50,7 @@ export const JellyResult = ({ calculationResult }: JellyResultProps) => {
                 </Tooltip>
             </TooltipProvider>
 
-            <p className="absolute z-10 cookie-run-font text-white text-outline-sm left-1/2 -translate-x-1/2 -bottom-1.5">
+            <p className="absolute sm:text-2xl z-10 cookie-run-font text-white text-outline-sm left-1/2 -translate-x-1/2 -bottom-1.5">
                 {calculationResult.count.toLocaleString()}
             </p>
         </div>
