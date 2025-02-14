@@ -3,7 +3,6 @@ import { CalculationResult, EXP_GIVEN_ROW, EXP_REQUIREMENT_ROW, StarJelly } from
 import { JellyControlGrid } from './JellyControlGrid/JellyControlGrid';
 import { StyledButton } from '@/components/shared/StyledButton';
 import { labBonusPercentages, MAX_JELLIES } from './consts';
-import { useWindowSize } from '@/hooks/useWindowSize';
 import starJelliesDataRaw from '@/assets/data/required_star_jellies_per_level.csv?raw';
 import expGivenDataRaw from '@/assets/data/exp_given_by_jellies.csv?raw';
 import Papa from 'papaparse';
@@ -28,7 +27,6 @@ const JELLY_EXP_VALUES = Papa.parse<EXP_GIVEN_ROW>(expGivenDataRaw, {
 }).data;
 
 export const StarJellyCalculator = () => {
-    const isMobile = useWindowSize();
     const [currentLevel, setCurrentLevel] = useState(1);
     const [targetLevel, setTargetLevel] = useState(70);
     const [errorMessage, setErrorMessage] = useState('');
@@ -100,7 +98,7 @@ export const StarJellyCalculator = () => {
         }
 
         setCalculationResults(result);
-        setTotalEffectiveMultiplier(labBonusPercentages[labUpgradeLevel] * 100 + burningTimePercent);
+        setTotalEffectiveMultiplier(Math.round(labBonusPercentages[labUpgradeLevel] * 100) + burningTimePercent);
 
         if (remainingExp > 0) {
             setErrorMessage(
@@ -116,7 +114,7 @@ export const StarJellyCalculator = () => {
     };
 
     return (
-        <div className="max-w-250 min-w-80 rounded-3xl shadow-sm border-transparent flex flex-col">
+        <div className="min-w-72 rounded-3xl shadow-sm border-transparent flex flex-col">
             <PanelHeader className="w-full h-11">
                 <h1 className="flex items-center justify-center text-white drop-shadow cookie-run-font font-bold text-lg text-outline-sm pt-1 tracking-wider h-full">
                     Star Jelly Calculator
@@ -154,7 +152,7 @@ export const StarJellyCalculator = () => {
                     <PanelDivider className="block md:hidden">
                         <span className="text-xs text-white text-outline-sm cookie-run-font">Available Jellies</span>
                     </PanelDivider>
-                    <div className={isMobile ? 'flex justify-center w-full' : 'w-full'}>
+                    <div className="flex justify-center w-full">
                         <JellyControlGrid
                             availableJellies={availableJellies}
                             setAvailableJellies={setAvailableJellies}
@@ -168,7 +166,7 @@ export const StarJellyCalculator = () => {
                     onClick={calculateOptimalJellyUsage}
                     variant="BrightBlueButton"
                     aria-label="Calculate Results"
-                    className="text-lg w-3/4 h-14"
+                    className="text-xl w-3/4 h-15"
                 />
             </PanelFooter>
         </div>

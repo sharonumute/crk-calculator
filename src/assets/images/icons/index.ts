@@ -14,9 +14,13 @@ import hot_time_big from './hot_time_big.png';
 import empty_gnome from './empty_gnome.png';
 import plus from './plus.png';
 import plus_red_circle from './plus_red_circle.png';
-import down_arrow_filled from './arrow_down.png';
+import down_arrow_filled from './arrow_down_filled.png';
 import question_gray_circle from './question_gray_circle.png';
 import info_gray_circle from './info_gray_circle.png';
+import arrow_right from './arrow_right.png';
+import menu_blue from './menu_blue.png';
+import notice from './notice.png';
+import quest_book from './quest_book.png';
 
 export {
     checkbox_off,
@@ -38,4 +42,8 @@ export {
     down_arrow_filled,
     question_gray_circle,
     info_gray_circle,
+    arrow_right,
+    menu_blue,
+    notice,
+    quest_book,
 };
