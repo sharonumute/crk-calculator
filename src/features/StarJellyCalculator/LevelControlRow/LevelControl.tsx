@@ -1,4 +1,4 @@
-import { edit } from '@/assets/images/icons';
+import { edit_gray_circle } from '@/assets/images/icons';
 import { AutoWidthInput } from '@/components/shared/AutoWidthInput';
 
 type LevelControlProps = {
@@ -13,7 +13,9 @@ export const LevelControl = (props: LevelControlProps) => {
     return (
         <div className={'relative w-fit'} aria-label={props.ariaLabel}>
             <div className="relative flex flex-row cookie-run-font font-bold text-3xl">
-                {props.showEditable && <img src={edit} alt="Editable" className="absolute w-5 -right-5 -top-1 z-10" />}
+                {props.showEditable && (
+                    <img src={edit_gray_circle} alt="Editable" className="absolute w-5 -right-5 -top-1 z-10" />
+                )}
                 <p className={props.className}>Lv.</p>
                 <AutoWidthInput
                     type="number"

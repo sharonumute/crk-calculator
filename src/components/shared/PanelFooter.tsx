@@ -5,7 +5,7 @@ import {
     bluePanelBackground_bottomLeft,
     bluePanelBackground_bottomMiddle,
     bluePanelBackground_bottomRight,
-} from '@/assets/images/backgrounds';
+} from '@/assets/images/backgrounds/BluePanelBackground';
 
 type PanelFooterProps = {
     children: React.ReactNode;

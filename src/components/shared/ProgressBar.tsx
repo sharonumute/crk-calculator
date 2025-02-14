@@ -3,7 +3,7 @@ import {
     yellowProgressBarBackground_right,
     yellowProgressBarFill_middle,
     yellowProgressBarFill_right,
-} from '@/assets/images/backgrounds';
+} from '@/assets/images/backgrounds/YellowProgressBar';
 
 interface ProgressBarProps {
     progress: number;

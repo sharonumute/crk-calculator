@@ -1,4 +1,4 @@
-import { hot_time_icon_big, info } from '@/assets/images/icons';
+import { hot_time_big, info_gray_circle } from '@/assets/images/icons';
 import { AdaptiveTooltip } from '@/components/shared/AdaptiveTooltip';
 import { StyledInput } from '@/components/shared/StyledInput';
 import { StyledSelect } from '@/components/shared/StyledSelect';
@@ -41,7 +41,7 @@ export const BonusControlRow = ({
             />
 
             <AdaptiveTooltip content={tooltip}>
-                <img src={info} className="h-7 py-1" aria-label="More Info" />
+                <img src={info_gray_circle} className="h-7 py-1" aria-label="More Info" />
             </AdaptiveTooltip>
 
             <StyledInput
@@ -50,7 +50,7 @@ export const BonusControlRow = ({
                 onChange={onBurningTimePercentChange}
                 min={0}
                 max={100}
-                subtitle={<img src={hot_time_icon_big} className="opacity-50" />}
+                subtitle={<img src={hot_time_big} className="opacity-50" />}
                 className="h-7"
                 aria-label="Enter burning time percent"
             />

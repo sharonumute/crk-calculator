@@ -9,6 +9,9 @@ import {
     blackPanelBackground_topLeft,
     blackPanelBackground_topMiddle,
     blackPanelBackground_topRight,
+} from '@/assets/images/backgrounds/BlackPanelBackground';
+
+import {
     bluePanelBackground_bottomLeft,
     bluePanelBackground_bottomMiddle,
     bluePanelBackground_bottomRight,
@@ -18,7 +21,7 @@ import {
     bluePanelBackground_topLeft,
     bluePanelBackground_topMiddle,
     bluePanelBackground_topRight,
-} from '@/assets/images/backgrounds';
+} from '@/assets/images/backgrounds/BluePanelBackground';
 
 type PanelBackgroundVariant = 'Blue' | 'Black';
 interface PanelBackgroundProps {

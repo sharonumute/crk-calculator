@@ -2,7 +2,7 @@ import {
     whiteInputBackground_left,
     whiteInputBackground_middle,
     whiteInputBackground_right,
-} from '@/assets/images/backgrounds';
+} from '@/assets/images/backgrounds/WhiteInputBackground';
 import { Input } from '@/components/shared/Input';
 
 type StyledInputProps = React.InputHTMLAttributes<HTMLInputElement> & {

@@ -1,7 +1,7 @@
 import { CalculationResult } from '@/features/StarJellyCalculator/types';
 import { JellyResult } from './JellyResult';
 import './CalculationResultArea.css';
-import { gnome_empty } from '@/assets/images/icons';
+import { empty_gnome } from '@/assets/images/icons';
 import { BonusButton } from './BonusButton';
 
 interface CalculationResultAreaProps {
@@ -24,7 +24,7 @@ export const CalculationResultArea = ({ calculationResults, totalEffectiveMultip
         </div>
     ) : (
         <div className="flex calculation-area rounded-3xl p-2 h-30 items-center justify-center">
-            <img src={gnome_empty} alt="No Calculation Results" className="relative scale-40 opacity-50" />
+            <img src={empty_gnome} alt="No Calculation Results" className="relative scale-40 opacity-50" />
         </div>
     );
 };

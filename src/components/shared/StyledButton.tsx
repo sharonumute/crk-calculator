@@ -2,10 +2,12 @@ import {
     blueDefaultButton_left,
     blueDefaultButton_middle,
     blueDefaultButton_right,
+} from '@/assets/images/buttons/BlueDefaultButton';
+import {
     brightBlueButton_left,
     brightBlueButton_middle,
     brightBlueButton_right,
-} from '@/assets/images/buttons';
+} from '@/assets/images/buttons/BrightBlueButton';
 import './shared.css';
 
 type StyledButtonVariant = 'BrightBlueButton' | 'BlueButtonDefault';

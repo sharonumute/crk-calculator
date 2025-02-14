@@ -10,11 +10,11 @@ import {
     expJelly_8,
 } from '@/assets/images/jellies';
 import { MAX_JELLIES } from '@/features/StarJellyCalculator/consts';
-import { checkbox_off, checkbox_on, edit } from '@/assets/images/icons';
+import { checkbox_off, checkbox_on, edit_gray_circle } from '@/assets/images/icons';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useElementSize } from '@/hooks/useElementSize';
 import { AutoScalingInput } from '@/components/shared/AutoScalingInput';
-import { commonRarityPanel, epicRarityPanel, rareRarityPanel } from '@/assets/images/backgrounds';
+import { commonRarityPanel, epicRarityPanel, rareRarityPanel } from '@/assets/images/backgrounds/RarityPanelBackground';
 import { useJellyScaling } from '@/hooks/useJellyScaling';
 
 type JellyControlProps = {
@@ -71,7 +71,7 @@ export const JellyControl = (props: JellyControlProps) => {
                         )}
                     </div>
 
-                    <img src={edit} alt="Editable" className="absolute w-1/4 h-1/4 z-40 right-2 top-2" />
+                    <img src={edit_gray_circle} alt="Editable" className="absolute w-1/4 h-1/4 z-40 right-2 top-2" />
                 </div>
 
                 <AutoScalingInput

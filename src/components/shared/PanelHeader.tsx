@@ -5,7 +5,7 @@ import {
     bluePanelBackground_topLeft,
     bluePanelBackground_topMiddle,
     bluePanelBackground_topRight,
-} from '@/assets/images/backgrounds';
+} from '@/assets/images/backgrounds/BluePanelBackground';
 
 type PanelHeaderProps = {
     children: React.ReactNode;

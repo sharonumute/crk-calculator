@@ -2,7 +2,7 @@ import {
     blueDefaultControlBackground_left,
     blueDefaultControlBackground_middle,
     blueDefaultControlBackground_right,
-} from '@/assets/images/backgrounds';
+} from '@/assets/images/backgrounds/BlueDefaultControlBackground';
 import { down_arrow_filled } from '@/assets/images/icons';
 import './shared.css';
 
