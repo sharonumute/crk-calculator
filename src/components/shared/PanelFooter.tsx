@@ -26,6 +26,6 @@ export const PanelFooter = ({ children, className = '' }: PanelFooterProps) => (
                 <img src={bluePanelBackground_bottomRight} className="flex-shrink-0 w-7 h-7" />
             </div>
         </div>
-        <div className={`relative p-2 flex items-center justify-center h-full`}>{children}</div>
+        <div className={`relative p-2 pb-3.5 flex items-center justify-center h-full`}>{children}</div>
     </div>
 );

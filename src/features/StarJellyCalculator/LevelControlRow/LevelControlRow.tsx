@@ -30,7 +30,6 @@ export const LevelControlRow = (props: LevelControlRowProps) => {
                     onChange={props.onTargetLevelChange}
                     className="text-green-500"
                     aria-label={`Target Level: ${props.targetLevel}. Editable`}
-                    showEditable={true}
                 />
             </div>
         </div>
