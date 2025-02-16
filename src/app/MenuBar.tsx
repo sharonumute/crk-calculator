@@ -1,15 +1,23 @@
 import { close_blue_circle, menu_blue, notice, quest_book } from '@/assets/images/icons';
 import { StyledButton } from '@/components/shared/StyledButton';
-import { Page } from '@/types/Page';
 import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-type MenuBarProps = {
-    pages: Page[];
-    setPage: (e: Page) => void;
+type Route = {
+    path: string;
+    name: string;
+    component: React.ComponentType;
 };
 
-export const MenuBar = ({ pages, setPage }: MenuBarProps) => {
+type MenuBarProps = {
+    routes: readonly Route[];
+};
+
+export const MenuBar = ({ routes }: MenuBarProps) => {
     const [isExpanded, setIsExpanded] = useState(true);
+    const location = useLocation();
+    const navigate = useNavigate();
+
     return (
         <div className="w-full md:w-min md:mb-auto">
             <div className="relative flex gap-3 justify-end pt-2 pr-2">
@@ -35,13 +43,13 @@ export const MenuBar = ({ pages, setPage }: MenuBarProps) => {
 
             {isExpanded && (
                 <div className="mt-2 flex flex-wrap gap-2 justify-end">
-                    {pages.map((text, index) => (
+                    {routes.map(({ path, name }, index) => (
                         <StyledButton
                             key={index}
-                            label={text}
-                            onClick={() => setPage(text)}
-                            variant="YellowButton"
-                            aria-label={`Navigate to ${text}`}
+                            label={name}
+                            onClick={() => navigate(path)}
+                            variant={location.pathname === path ? 'RedButton' : 'YellowButton'}
+                            aria-label={`Navigate to ${name}`}
                             className="text-xs sm:text-base duration-75 hover:scale-105 active:scale-95 whitespace-nowrap"
                         />
                     ))}

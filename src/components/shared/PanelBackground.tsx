@@ -31,34 +31,8 @@ interface PanelBackgroundProps {
 }
 
 export const PanelBackground = ({ children, className = '', variant = 'Blue' }: PanelBackgroundProps) => {
-    const panelParts = [
-        bluePanelBackground_topLeft,
-        bluePanelBackground_topMiddle,
-        bluePanelBackground_topRight,
-        bluePanelBackground_centerLeft,
-        bluePanelBackground_centerMiddle,
-        bluePanelBackground_centerRight,
-        bluePanelBackground_bottomLeft,
-        bluePanelBackground_bottomMiddle,
-        bluePanelBackground_bottomRight,
-    ];
+    const panelParts = getPanelParts(variant);
 
-    switch (variant) {
-        case 'Black':
-            panelParts[0] = blackPanelBackground_topLeft;
-            panelParts[1] = blackPanelBackground_topMiddle;
-            panelParts[2] = blackPanelBackground_topRight;
-            panelParts[3] = blackPanelBackground_centerLeft;
-            panelParts[4] = blackPanelBackground_centerMiddle;
-            panelParts[5] = blackPanelBackground_centerRight;
-            panelParts[6] = blackPanelBackground_bottomLeft;
-            panelParts[7] = blackPanelBackground_bottomMiddle;
-            panelParts[8] = blackPanelBackground_bottomRight;
-            break;
-        case 'Blue':
-        default:
-            break;
-    }
     return (
         <div className={`${className} relative inline-block`} style={{ height: '-webkit-fill-available' }}>
             <div className="absolute inset-0 flex flex-col">
@@ -87,3 +61,33 @@ export const PanelBackground = ({ children, className = '', variant = 'Blue' }: 
         </div>
     );
 };
+
+function getPanelParts(variant: PanelBackgroundVariant) {
+    switch (variant) {
+        case 'Black':
+            return [
+                blackPanelBackground_topLeft,
+                blackPanelBackground_topMiddle,
+                blackPanelBackground_topRight,
+                blackPanelBackground_centerLeft,
+                blackPanelBackground_centerMiddle,
+                blackPanelBackground_centerRight,
+                blackPanelBackground_bottomLeft,
+                blackPanelBackground_bottomMiddle,
+                blackPanelBackground_bottomRight,
+            ];
+        case 'Blue':
+        default:
+            return [
+                bluePanelBackground_topLeft,
+                bluePanelBackground_topMiddle,
+                bluePanelBackground_topRight,
+                bluePanelBackground_centerLeft,
+                bluePanelBackground_centerMiddle,
+                bluePanelBackground_centerRight,
+                bluePanelBackground_bottomLeft,
+                bluePanelBackground_bottomMiddle,
+                bluePanelBackground_bottomRight,
+            ];
+    }
+}

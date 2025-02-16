@@ -10,49 +10,31 @@ import {
 } from '@/assets/images/buttons/BrightBlueButton';
 import './shared.css';
 import { yellowButton_left, yellowButton_middle, yellowButton_right } from '@/assets/images/buttons/YellowButton';
+import { redButton_left, redButton_middle, redButton_right } from '@/assets/images/buttons/RedButton';
 
-type StyledButtonVariant = 'BrightBlueButton' | 'BlueButtonDefault' | 'YellowButton';
+type StyledButtonVariant = 'BrightBlueButton' | 'BlueButtonDefault' | 'YellowButton' | 'RedButton';
 
 type StyledButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     label: string;
-    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-    className?: string;
     variant?: StyledButtonVariant;
     innerClassName?: string;
 };
 
 export const StyledButton = ({
     label,
-    onClick,
     className = '',
     variant = 'BlueButtonDefault',
     innerClassName = '',
     ...props
 }: StyledButtonProps) => {
-    const aggClassName =
-        'relative inline-flex items-center justify-center transition-all bg-transparent border-0 p-0 m-0 cookie-run-font font-bold text-outline-sm duration-75 hover:scale-105 active:scale-95 ' +
+    const buttonClassName =
+        'relative inline-flex items-center justify-center transition-all cookie-run-font font-bold text-outline-sm duration-75 hover:scale-105 active:scale-95 ' +
         className;
 
-    const buttonParts = [blueDefaultButton_left, blueDefaultButton_middle, blueDefaultButton_right];
-
-    switch (variant) {
-        case 'BrightBlueButton':
-            buttonParts[0] = brightBlueButton_left;
-            buttonParts[1] = brightBlueButton_middle;
-            buttonParts[2] = brightBlueButton_right;
-            break;
-        case 'YellowButton':
-            buttonParts[0] = yellowButton_left;
-            buttonParts[1] = yellowButton_middle;
-            buttonParts[2] = yellowButton_right;
-            break;
-        case 'BlueButtonDefault':
-        default:
-            break;
-    }
+    const buttonParts = getButtonParts(variant);
 
     return (
-        <button onClick={onClick} className={aggClassName} {...props}>
+        <button className={buttonClassName} {...props}>
             <div className="relative inline-flex items-stretch cursor-pointer group w-full h-full">
                 <div className={'relative py-2 px-8 w-full h-full ' + innerClassName}>
                     <span className="relative text-white drop-shadow z-10 w-full h-full flex items-center justify-center">
@@ -76,3 +58,17 @@ export const StyledButton = ({
         </button>
     );
 };
+
+function getButtonParts(variant: StyledButtonVariant) {
+    switch (variant) {
+        case 'BrightBlueButton':
+            return [brightBlueButton_left, brightBlueButton_middle, brightBlueButton_right];
+        case 'YellowButton':
+            return [yellowButton_left, yellowButton_middle, yellowButton_right];
+        case 'RedButton':
+            return [redButton_left, redButton_middle, redButton_right];
+        case 'BlueButtonDefault':
+        default:
+            return [blueDefaultButton_left, blueDefaultButton_middle, blueDefaultButton_right];
+    }
+}
