@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 function App() {
     const availablePages: Page[] = ['Star Jelly Calculator', 'Skill Powder Calculator', 'Promotion Calculator'];
-    const [currentPage, setCurrentPage] = useState(availablePages[0]);
+    const [, setCurrentPage] = useState(availablePages[0]);
     return (
         <div className="checkered-background w-screen min-h-screen">
             <div className="max-w-7xl mx-auto">
