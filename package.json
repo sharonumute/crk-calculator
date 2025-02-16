@@ -2,7 +2,7 @@
     "name": "crk-calculator",
     "private": true,
     "version": "0.0.0",
-    "homepage": "https://sharonumute.github.io/crk-calculator/",
+    "homepage": "https://pristinepowder.com/",
     "type": "module",
     "scripts": {
         "predeploy": "npm run build",
