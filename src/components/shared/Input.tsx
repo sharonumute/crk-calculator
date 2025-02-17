@@ -16,10 +16,27 @@ export const Input = (props: InputProps) => {
     };
 
     return (
-        <input
-            {...props}
-            onChange={handleChange}
-            value={props.type == 'number' ? Number(props.value).toString() : props.value}
-        />
+        <>
+            <style>
+                {`
+                    /* Remove spinner buttons for Firefox */
+                    input[type="number"] {
+                    -moz-appearance: textfield;
+                    }
+                    
+                    /* Remove spinner buttons for Chrome, Safari, Edge, Opera */
+                    input::-webkit-outer-spin-button,
+                    input::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                    }
+                `}
+            </style>
+            <input
+                {...props}
+                onChange={handleChange}
+                value={props.type == 'number' ? Number(props.value).toString() : props.value}
+            />
+        </>
     );
 };
