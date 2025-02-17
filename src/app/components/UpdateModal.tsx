@@ -1,4 +1,11 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogDescription,
+    DialogTrigger,
+} from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
 import Papa from 'papaparse';
 import _ from 'lodash';
@@ -62,6 +69,9 @@ export const UpdateModal = () => {
             <DialogContent className="sm:max-w-[600px] max-h-[80vh] overflow-y-auto">
                 <DialogHeader>
                     <DialogTitle className="cookie-run-font">Latest Updates</DialogTitle>
+                    <DialogDescription className="sr-only">
+                        View all recent changes and improvements to the application
+                    </DialogDescription>
                 </DialogHeader>
                 <div className="py-4">
                     <div className="space-y-6">
