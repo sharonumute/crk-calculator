@@ -1,6 +1,7 @@
 import { empty_gnome } from '@/assets/images/icons';
 import { CalculationResults } from '../types';
 import { SkillPowderResult } from './SkillPowderResult';
+import './CalculationResultArea.css';
 
 type CalculationResultAreaProps = {
     calculationResults: CalculationResults;
@@ -8,8 +9,8 @@ type CalculationResultAreaProps = {
 
 export const CalculationResultArea = ({ calculationResults }: CalculationResultAreaProps) => {
     return (
-        <div className="flex flex-col bg-[#DCCFC7] border-3 border-white rounded-3xl overflow-hidden">
-            <div className="w-full bg-[#C7B4AD] py-1">
+        <div className="flex flex-col calculation-area border-3 border-white rounded-3xl overflow-hidden">
+            <div className="w-full calculation-header py-1">
                 <h2 className="cookie-run-font text-outline-sm text-white text-center text-base">Materials</h2>
             </div>
             {calculationResults.coins > 0 ? (
