@@ -7,3 +7,7 @@
 .translucent-options option {
     background-color: rgba(0, 0, 0, 0.8);
 }
+
+.arrow_progress_green {
+    filter: sepia(14%) saturate(5386%) hue-rotate(55deg);
+}

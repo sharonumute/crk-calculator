@@ -1,4 +1,3 @@
-import { CalculationResult } from '@/features/StarJellyCalculator/types';
 import {
     expJelly_1,
     expJelly_2,
@@ -10,7 +9,8 @@ import {
     expJelly_8,
 } from '@/assets/images/jellies';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { useJellyScaling } from '@/hooks/useJellyScaling';
+import { CalculationResult } from '../types';
+import { useJellyScaling } from '../useJellyScaling';
 
 type JellyResultProps = {
     calculationResult: CalculationResult;

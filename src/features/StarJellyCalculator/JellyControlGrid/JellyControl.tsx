@@ -1,4 +1,5 @@
-import { StarJelly } from '@/features/StarJellyCalculator/types';
+import { commonRarityPanel, epicRarityPanel, rareRarityPanel } from '@/assets/images/backgrounds/RarityPanelBackground';
+import { checkbox_off, checkbox_on, edit_gray_circle } from '@/assets/images/icons';
 import {
     expJelly_1,
     expJelly_2,
@@ -9,13 +10,12 @@ import {
     expJelly_7,
     expJelly_8,
 } from '@/assets/images/jellies';
-import { MAX_JELLIES } from '@/features/StarJellyCalculator/consts';
-import { checkbox_off, checkbox_on, edit_gray_circle } from '@/assets/images/icons';
+import { AutoScalingInput } from '@/components/shared/AutoScalingInput';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useElementSize } from '@/hooks/useElementSize';
-import { AutoScalingInput } from '@/components/shared/AutoScalingInput';
-import { commonRarityPanel, epicRarityPanel, rareRarityPanel } from '@/assets/images/backgrounds/RarityPanelBackground';
-import { useJellyScaling } from '@/hooks/useJellyScaling';
+import { MAX_JELLIES } from '../consts';
+import { StarJelly } from '../types';
+import { useJellyScaling } from '../useJellyScaling';
 
 type JellyControlProps = {
     jelly: StarJelly;

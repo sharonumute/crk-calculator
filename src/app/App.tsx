@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { MenuBar } from './MenuBar';
 import { StarJellyCalculator } from '@/features/StarJellyCalculator/StarJellyCalculator';
-import { PromotionCalculator } from '@/features/PromotionCalculator/PromotionCalculator';
 import { SkillPowderCalculator } from '@/features/SkillPowderCalculator/SkillPowderCalculator';
 
 const routes = [
@@ -9,11 +8,6 @@ const routes = [
         path: '/star-jelly-calculator',
         name: 'Star Jelly Calculator',
         component: StarJellyCalculator,
-    },
-    {
-        path: '/promotion-calculator',
-        name: 'Promotion Calculator',
-        component: PromotionCalculator,
     },
     {
         path: '/skill-powder-calculator',

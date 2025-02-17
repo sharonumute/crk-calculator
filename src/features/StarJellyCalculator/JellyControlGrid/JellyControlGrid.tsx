@@ -1,4 +1,4 @@
-import { StarJelly } from '@/features/StarJellyCalculator/types';
+import { StarJelly } from '../types';
 import { JellyControl } from './JellyControl';
 
 type JellyControlGridProps = {

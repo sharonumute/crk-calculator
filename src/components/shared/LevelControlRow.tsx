@@ -1,6 +1,6 @@
 import { arrow_progress } from '@/assets/images/icons';
 import { LevelControl } from './LevelControl';
-import './LevelControlRow.css';
+import './shared.css';
 
 type LevelControlRowProps = {
     currentLevel: number;
@@ -12,7 +12,7 @@ type LevelControlRowProps = {
 
 export const LevelControlRow = (props: LevelControlRowProps) => {
     return (
-        <div className="grid grid-cols-[1fr_auto_1fr] scale-75">
+        <div className={'grid grid-cols-[1fr_auto_1fr] scale-75 ' + props.className}>
             <div className="flex justify-end pt-0.5">
                 <LevelControl
                     value={props.currentLevel}

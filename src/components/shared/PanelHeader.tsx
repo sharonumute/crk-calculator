@@ -30,3 +30,14 @@ export const PanelHeader = ({ children, className = '' }: PanelHeaderProps) => (
         <div className={`relative ${className}`}>{children}</div>
     </div>
 );
+
+type PanelHeaderTextProps = {
+    text: string;
+};
+export const PanelHeaderText = ({ text }: PanelHeaderTextProps) => {
+    return (
+        <h1 className="flex items-center justify-center text-white drop-shadow cookie-run-font font-bold text-lg text-outline-sm pt-1 tracking-wider h-full">
+            {text}
+        </h1>
+    );
+};

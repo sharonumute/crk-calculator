@@ -21,6 +21,7 @@ import arrow_right from './arrow_right.png';
 import menu_blue from './menu_blue.png';
 import notice from './notice.png';
 import quest_book from './quest_book.png';
+import coin from './coin.png';
 
 export {
     checkbox_off,
@@ -46,4 +47,5 @@ export {
     menu_blue,
     notice,
     quest_book,
+    coin,
 };

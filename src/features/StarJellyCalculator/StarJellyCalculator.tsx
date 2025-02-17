@@ -1,18 +1,18 @@
-import { useState, useCallback, useEffect } from 'react';
-import { CalculationResult, EXP_GIVEN_ROW, EXP_REQUIREMENT_ROW, StarJelly } from './types';
-import { JellyControlGrid } from './JellyControlGrid/JellyControlGrid';
-import { StyledButton } from '@/components/shared/StyledButton';
-import { labBonusPercentages, MAX_JELLIES } from './consts';
-import starJelliesDataRaw from '@/assets/data/required_star_jellies_per_level.csv?raw';
 import expGivenDataRaw from '@/assets/data/exp_given_by_jellies.csv?raw';
-import Papa from 'papaparse';
-import { LevelControlRow } from './LevelControlRow/LevelControlRow';
-import { PanelHeader } from '@/components/shared/PanelHeader';
-import { PanelFooter } from '@/components/shared/PanelFooter';
-import { CalculationResultArea } from './CalculationResultArea/CalculationResultArea';
-import { ExpProgressBar } from './ExpProgressBar/ExpProgressBar';
-import { BonusControlRow } from './BonusControlRow/BonusControlRow';
+import starJelliesDataRaw from '@/assets/data/required_star_jellies_per_level.csv?raw';
+import { LevelControlRow } from '@/components/shared/LevelControlRow';
 import { PanelDivider } from '@/components/shared/PanelDivider';
+import { PanelFooter } from '@/components/shared/PanelFooter';
+import { PanelHeader, PanelHeaderText } from '@/components/shared/PanelHeader';
+import { StyledButton } from '@/components/shared/StyledButton';
+import Papa from 'papaparse';
+import { useCallback, useEffect, useState } from 'react';
+import { BonusControlRow } from './BonusControlRow/BonusControlRow';
+import { CalculationResultArea } from './CalculationResultArea/CalculationResultArea';
+import { labBonusPercentages, MAX_JELLIES } from './consts';
+import { ExpProgressBar } from './ExpProgressBar/ExpProgressBar';
+import { JellyControlGrid } from './JellyControlGrid/JellyControlGrid';
+import { CalculationResult, EXP_GIVEN_ROW, EXP_REQUIREMENT_ROW, StarJelly } from './types';
 
 const EXP_REQUIREMENTS = Papa.parse<EXP_REQUIREMENT_ROW>(starJelliesDataRaw, {
     header: true,
@@ -116,48 +116,39 @@ export const StarJellyCalculator = () => {
     return (
         <div className="rounded-3xl shadow-sm border-transparent flex flex-col container">
             <PanelHeader className="w-full h-11">
-                <h1 className="flex items-center justify-center text-white drop-shadow cookie-run-font font-bold text-lg text-outline-sm pt-1 tracking-wider h-full">
-                    Star Jelly Calculator
-                </h1>
+                <PanelHeaderText text="Star Jelly Calculator" />
             </PanelHeader>
-            <div className="card-content inner-border border-3 border-black p-2">
-                <div className="grid grid-cols-1 gap-x-4 items-start">
-                    <div className="grid grid-cols-1 gap-2">
-                        <LevelControlRow
-                            currentLevel={currentLevel}
-                            targetLevel={targetLevel}
-                            onCurrentLevelChange={(e) => setCurrentLevel(Number(e.target.value))}
-                            onTargetLevelChange={(e) => setTargetLevel(Number(e.target.value))}
-                        />
-                        <ExpProgressBar
-                            totalExpProvided={calculateProvidedExp()}
-                            totalExpRequired={calculateRequiredExp(currentLevel, targetLevel)}
-                        />
-                        <BonusControlRow
-                            labUpgradeLevel={labUpgradeLevel}
-                            onLabUpgradeLevelChange={(e) => setLabUpgradeLevel(Number(e.target.value))}
-                            burningTimePercent={burningTimePercent}
-                            onBurningTimePercentChange={(e) => setBurningTimePercent(Number(e.target.value))}
-                        />
-                        {errorMessage && (
-                            <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded ">
-                                {errorMessage}
-                            </div>
-                        )}
-                        <CalculationResultArea
-                            calculationResults={calculationResults}
-                            totalEffectiveMultiplier={totalEffectiveMultiplier}
-                        />
-                    </div>
-                    <PanelDivider>
-                        <span className="text-xs text-white text-outline-sm cookie-run-font">Available Jellies</span>
-                    </PanelDivider>
-                    <div className="flex justify-center w-full">
-                        <JellyControlGrid
-                            availableJellies={availableJellies}
-                            setAvailableJellies={setAvailableJellies}
-                        />
-                    </div>
+            <div className="card-content inner-border border-3 border-black grid grid-cols-1 items-start py-2 px-4 pb-4">
+                <div className="grid grid-cols-1 gap-2">
+                    <LevelControlRow
+                        currentLevel={currentLevel}
+                        targetLevel={targetLevel}
+                        onCurrentLevelChange={(e) => setCurrentLevel(Number(e.target.value))}
+                        onTargetLevelChange={(e) => setTargetLevel(Number(e.target.value))}
+                    />
+                    <ExpProgressBar
+                        totalExpProvided={calculateProvidedExp()}
+                        totalExpRequired={calculateRequiredExp(currentLevel, targetLevel)}
+                    />
+                    <BonusControlRow
+                        labUpgradeLevel={labUpgradeLevel}
+                        onLabUpgradeLevelChange={(e) => setLabUpgradeLevel(Number(e.target.value))}
+                        burningTimePercent={burningTimePercent}
+                        onBurningTimePercentChange={(e) => setBurningTimePercent(Number(e.target.value))}
+                    />
+                    {errorMessage && (
+                        <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded ">{errorMessage}</div>
+                    )}
+                    <CalculationResultArea
+                        calculationResults={calculationResults}
+                        totalEffectiveMultiplier={totalEffectiveMultiplier}
+                    />
+                </div>
+                <PanelDivider>
+                    <span className="text-xs text-white text-outline-sm cookie-run-font">Available Jellies</span>
+                </PanelDivider>
+                <div className="flex justify-center w-full">
+                    <JellyControlGrid availableJellies={availableJellies} setAvailableJellies={setAvailableJellies} />
                 </div>
             </div>
             <PanelFooter className="w-full h-20">
