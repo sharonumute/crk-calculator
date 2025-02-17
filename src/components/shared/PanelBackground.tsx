@@ -24,11 +24,11 @@ import {
 } from '@/assets/images/backgrounds/BluePanelBackground';
 
 type PanelBackgroundVariant = 'Blue' | 'Black';
-interface PanelBackgroundProps {
+type PanelBackgroundProps = {
     children: React.ReactNode;
     className?: string;
     variant?: PanelBackgroundVariant;
-}
+};
 
 export const PanelBackground = ({ children, className = '', variant = 'Blue' }: PanelBackgroundProps) => {
     const panelParts = getPanelParts(variant);

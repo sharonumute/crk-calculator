@@ -5,11 +5,11 @@ import {
     yellowProgressBarFill_right,
 } from '@/assets/images/backgrounds/YellowProgressBar';
 
-interface ProgressBarProps {
+type ProgressBarProps = {
     progress: number;
     className?: string;
     children?: React.ReactNode;
-}
+};
 
 export const ProgressBar = ({ progress = 50, className = '', children }: ProgressBarProps) => {
     const clampedProgress = Math.min(Math.max(progress, 0), 100);

@@ -4,10 +4,10 @@ import './CalculationResultArea.css';
 import { empty_gnome } from '@/assets/images/icons';
 import { BonusButton } from './BonusButton';
 
-interface CalculationResultAreaProps {
+type CalculationResultAreaProps = {
     calculationResults: CalculationResult[];
     totalEffectiveMultiplier: number;
-}
+};
 
 export const CalculationResultArea = ({ calculationResults, totalEffectiveMultiplier }: CalculationResultAreaProps) => {
     return calculationResults.length > 0 ? (

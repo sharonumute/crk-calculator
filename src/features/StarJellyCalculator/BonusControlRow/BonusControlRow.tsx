@@ -3,12 +3,12 @@ import { AdaptiveTooltip } from '@/components/shared/AdaptiveTooltip';
 import { StyledInput } from '@/components/shared/StyledInput';
 import { StyledSelect } from '@/components/shared/StyledSelect';
 
-interface BonusControlRowProps {
+type BonusControlRowProps = {
     labUpgradeLevel: number;
     burningTimePercent: number;
     onLabUpgradeLevelChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
     onBurningTimePercentChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+};
 
 export const BonusControlRow = ({
     labUpgradeLevel,

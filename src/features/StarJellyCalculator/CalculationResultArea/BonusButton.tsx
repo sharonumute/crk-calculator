@@ -1,9 +1,9 @@
 import { hot_time_balloon } from '@/assets/images/balloons';
 import { hot_time_icon, hot_time_arrow } from '@/assets/images/icons';
 
-export interface BonusButtonProps {
+export type BonusButtonProps = {
     value: number;
-}
+};
 
 export const BonusButton = ({ value }: BonusButtonProps) => {
     return (

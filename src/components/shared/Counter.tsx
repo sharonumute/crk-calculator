@@ -2,11 +2,11 @@ import { minus_blue_circle, plus_blue_circle } from '@/assets/images/icons';
 import { Input } from './Input';
 import { PanelBackground } from './PanelBackground';
 
-interface CounterProps {
+type CounterProps = {
     value: number;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     max: number;
-}
+};
 
 export const Counter = ({ value, onChange, max }: CounterProps) => {
     const createChangeEvent = (newValue: number): React.ChangeEvent<HTMLInputElement> => {

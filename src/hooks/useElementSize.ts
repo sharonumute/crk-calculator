@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 
-interface ElementSize {
+type ElementSize = {
     width: number;
     height: number;
-}
+};
 
 export const useElementSize = <T extends HTMLElement>(): [React.RefObject<T | null>, ElementSize] => {
     const ref = useRef<T>(null);

@@ -1,23 +1,23 @@
-export interface StarJelly {
+export type StarJelly = {
     level: number;
     baseExp: number;
     effectiveExp: number;
     count?: number;
     selected?: boolean;
-}
+};
 
-export interface CalculationResult {
+export type CalculationResult = {
     jelly: StarJelly;
     count: number;
     expProvided: number;
-}
+};
 
-export interface EXP_GIVEN_ROW {
+export type EXP_GIVEN_ROW = {
     Level: number;
     Base: number;
-}
+};
 
-export interface EXP_REQUIREMENT_ROW {
+export type EXP_REQUIREMENT_ROW = {
     Level: number;
     XP: number;
-}
+};

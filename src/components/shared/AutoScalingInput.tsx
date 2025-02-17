@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import './shared.css';
 import { Input } from '@/components/shared/Input';
 
-interface AutoScalingInputProps {
+type AutoScalingInputProps = {
     value: number;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     min: number;
@@ -10,7 +10,7 @@ interface AutoScalingInputProps {
     className?: string;
     baseFontSize?: number;
     minFontSize?: number;
-}
+};
 
 export const AutoScalingInput = ({
     value,
