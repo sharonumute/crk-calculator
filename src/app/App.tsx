@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { MenuBar } from './MenuBar';
+import { MenuBar } from './components/MenuBar';
 import { StarJellyCalculator } from '@/features/StarJellyCalculator/StarJellyCalculator';
 import { SkillPowderCalculator } from '@/features/SkillPowderCalculator/SkillPowderCalculator';
 

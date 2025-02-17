@@ -1,7 +1,8 @@
-import { close_blue_circle, menu_blue, notice, quest_book } from '@/assets/images/icons';
+import { close_blue_circle, menu_blue, quest_book } from '@/assets/images/icons';
 import { StyledButton } from '@/components/shared/StyledButton';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { UpdateModal } from './UpdateModal';
 
 type Route = {
     path: string;
@@ -21,13 +22,14 @@ export const MenuBar = ({ routes }: MenuBarProps) => {
     return (
         <div className="w-full md:w-min md:mb-auto">
             <div className="relative flex gap-3 justify-end pt-2 pr-2">
-                <button className="w-8 duration-75 hover:scale-105 active:scale-95 flex items-center">
+                <button
+                    className="w-8 duration-75 hover:scale-115 active:scale-95 flex items-center cursor-pointer"
+                    onClick={() => window.open('https://cookierunkingdom.fandom.com/wiki/Cookie_Upgrading', '_blank')}
+                >
                     <img src={quest_book} className="w-8" />
                 </button>
 
-                <button className="w-8 duration-75 hover:scale-105 active:scale-95 flex items-center">
-                    <img src={notice} className="w-8" />
-                </button>
+                <UpdateModal />
 
                 <button
                     onClick={() => setIsExpanded(!isExpanded)}
