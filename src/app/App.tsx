@@ -3,6 +3,7 @@ import { MenuBar } from './components/MenuBar';
 import { StarJellyCalculator } from '@/features/StarJellyCalculator/StarJellyCalculator';
 import { SkillPowderCalculator } from '@/features/SkillPowderCalculator/SkillPowderCalculator';
 
+// Also update sitemap in vite.config.ts
 const routes = [
     {
         path: '/star-jelly-calculator',
